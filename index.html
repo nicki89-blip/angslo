@@ -350,7 +350,7 @@ const DATASETS = [
         this.partialCardsSpan.textContent = partial;
         this.unknownCardsSpan.textContent = unknown;
 
-        const successRate = total > 0 ? Math.round(((known + partial * 0.5) / total) * 100) : 0;
+        const successRate = total > 0 ? Math.round((known / total) * 100) : 0;
         this.successRateSpan.textContent = `${successRate}%`;
         const bar = this.progressBar;
         bar.textContent = `${successRate}%`;
