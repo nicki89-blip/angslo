@@ -1,428 +1,274 @@
-<!DOCTYPE html>
-<html lang="sl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Anki Kartice - Angleščina</title>
-  <style>
-    :root{
-      --glass: rgba(255,255,255,0.2);
-      --glass-strong: rgba(255,255,255,0.3);
-    }
-    body{
-      box-sizing:border-box;margin:0;padding:0;
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-      min-height:100%;overflow-x:hidden;
-    }
-    html{height:100%;}
-    .container{max-width:1200px;margin:0 auto;padding:20px;min-height:100vh;display:flex;flex-direction:column;}
-    .header{color:white;margin-bottom:20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-    .header h1{font-size:2rem;margin:0;text-shadow:2px 2px 4px rgba(0,0,0,0.3);}
-    .dataset-picker{display:flex;gap:10px;align-items:center;background:var(--glass);padding:10px 12px;border-radius:14px;backdrop-filter:blur(10px)}
-    .dataset-picker label{font-weight:600}
-    .select{appearance:none;border:none;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,0.35);color:#fff;cursor:pointer}
-    .reload{border:none;padding:10px 14px;border-radius:12px;background:var(--glass-strong);color:#fff;cursor:pointer;font-weight:600}
-    .progress-container{background:var(--glass);border-radius:25px;padding:8px;margin:10px 0 20px;backdrop-filter:blur(10px)}
-    .progress-bar{height:20px;border-radius:20px;transition:all .3s ease;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold;font-size:.9rem;text-shadow:1px 1px 2px rgba(0,0,0,0.5);width:0%;}
-    .main-content{display:flex;gap:30px;flex:1;align-items:flex-start}
-    .card-section{flex:1;display:flex;flex-direction:column;align-items:center}
-    .card-container{perspective:1000px;margin-bottom:80px}
-    .card{width:400px;height:250px;position:relative;transform-style:preserve-3d;transition:transform .6s;cursor:pointer}
-    .card.flipped{transform:rotateY(180deg)}
-    .card-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:20px;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;box-shadow:0 10px 30px rgba(0,0,0,0.3);font-size:1.8rem;font-weight:bold}
-    .card-front{background:linear-gradient(135deg,#fff 0%,#f8f9fa 100%);color:#333}
-    .card-back{background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%);color:#fff;transform:rotateY(180deg)}
-    .controls{display:flex;gap:20px;margin-top:40px;margin-bottom:40px;flex-wrap:wrap;justify-content:center}
-    .btn{padding:12px 24px;border:none;border-radius:25px;cursor:pointer;font-size:1rem;font-weight:bold;transition:all .3s ease;backdrop-filter:blur(10px)}
-    .btn-nav{background:var(--glass);color:#fff}
-    .btn-nav:hover{background:rgba(255,255,255,0.35);transform:translateY(-2px)}
-    .btn-nav:disabled{opacity:.5;cursor:not-allowed}
-    .knowledge-buttons{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;margin-bottom:30px}
-    .btn-know{background:#28a745;color:#fff}
-    .btn-partial{background:#ffc107;color:#333}
-    .btn-unknown{background:#dc3545;color:#fff}
-    .btn-know:hover,.btn-partial:hover,.btn-unknown:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,0.3)}
-    .sidebar{width:280px;background:rgba(0,0,0,0.8);border-radius:20px;padding:25px;backdrop-filter:blur(10px);color:#fff;height:fit-content}
-    .sidebar h3{margin-top:0;color:#4facfe;font-size:1.3rem}
-    .filter-btn{width:100%;padding:15px;margin-bottom:10px;background:rgba(255,255,255,0.1);border:2px solid transparent;border-radius:15px;color:#fff;cursor:pointer;transition:all .3s ease;font-size:1rem}
-    .filter-btn:hover{background:rgba(255,255,255,0.2)}
-    .filter-btn.active{background:rgba(79,172,254,0.3);border-color:#4facfe}
-    .stats{margin-top:25px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2)}
-    .stat-item{display:flex;justify-content:space-between;margin-bottom:10px;font-size:.95rem}
-    .card-counter{text-align:center;color:#fff;font-size:1.1rem;margin-bottom:20px;background:rgba(0,0,0,0.3);padding:10px 20px;border-radius:15px;backdrop-filter:blur(10px)}
-    .no-cards{text-align:center;color:#fff;font-size:1.2rem;background:rgba(0,0,0,0.5);padding:40px;border-radius:20px;backdrop-filter:blur(10px)}
-    .keyboard-hint{text-align:center;color:rgba(255,255,255,0.8);font-size:.9rem;margin-top:15px}
-    @media (max-width: 768px){
-      .main-content{flex-direction:column}
-      .sidebar{width:100%;order:-1}
-      .card{width:320px;height:200px}
-      .card-face{font-size:1.4rem;padding:20px}
-      .header h1{font-size:1.6rem}
-      .controls{gap:10px}
-      .btn{padding:10px 16px;font-size:.9rem}
-    }
-    @media (max-width: 480px){
-      .card{width:280px;height:180px}
-      .card-face{font-size:1.2rem;padding:15px}
-      .knowledge-buttons{flex-direction:column}
-      .btn{width:100%}
-      .header{gap:8px}
-      .dataset-picker{width:100%;justify-content:space-between}
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>🎓 Anki Kartice - Angleščina</h1>
-      <div class="dataset-picker">
-        <label for="dataset">Naloži nabor:</label>
-        <select id="dataset" class="select" title="Izberi nabor kartic">
-          <!-- options will be injected -->
-        </select>
-        <button id="reloadBtn" class="reload" title="Ponovno naloži izbrani nabor">Naloži</button>
-      </div>
-    </div>
+<script>
+  // 🔗 Seznam naborov (dodaš še, ko narediš nove JSON datoteke)
+  const DATASETS = [
+    { id: "all",   name: "Vse besede", url: "english_words.json" },
+    { id: "unit1", name: "Unit 1",     url: "unit1.json" }
+  ];
+  const SELECT_KEY = "anki_dataset_id";
 
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar">0%</div>
-    </div>
-
-    <div class="main-content">
-      <div class="card-section">
-        <div class="card-counter" id="cardCounter">Kartica 0 od 0</div>
-        <div id="cardContainer" class="card-container">
-          <div class="card" id="flashcard">
-            <div class="card-face card-front" id="cardFront">Izberi nabor in klikni “Naloži”</div>
-            <div class="card-face card-back" id="cardBack">🙂</div>
-          </div>
-        </div>
-        <div id="noCardsMessage" class="no-cards" style="display:none;">
-          <h3>🎉 Odlično!</h3>
-          <p>Ni več kartic za prikaz v tem filtru.</p>
-          <p>Izberite drug filter ali nadaljujte z učenjem!</p>
-        </div>
-
-        <div class="controls">
-          <button class="btn btn-nav" id="prevBtn" disabled>⬅️ Prejšnja</button>
-          <button class="btn btn-nav" id="nextBtn" disabled>Naslednja ➡️</button>
-        </div>
-
-        <div class="knowledge-buttons">
-          <button class="btn btn-know" id="knowBtn" disabled>✅ Znam</button>
-          <button class="btn btn-partial" id="partialBtn" disabled>😐 Delno</button>
-          <button class="btn btn-unknown" id="unknownBtn" disabled>🚫 Ne znam</button>
-        </div>
-
-        <div class="keyboard-hint">💡 Puščice za navigacijo, presledek za obračanje kartice (1=Znam, 2=Delno, 3=Ne znam)</div>
-      </div>
-
-      <div class="sidebar">
-        <h3>🎯 Filtri</h3>
-        <button class="filter-btn active" data-filter="all">📚 Vse kartice</button>
-        <button class="filter-btn" data-filter="partial">😐 Delno znam</button>
-        <button class="filter-btn" data-filter="unknown">🚫 Ne znam</button>
-
-        <div class="stats">
-          <h3>📊 Statistike</h3>
-          <div class="stat-item"><span>Skupaj kartic:</span><span id="totalCards">0</span></div>
-          <div class="stat-item"><span>✅ Znam:</span><span id="knownCards">0</span></div>
-          <div class="stat-item"><span>😐 Delno:</span><span id="partialCards">0</span></div>
-          <div class="stat-item"><span>🚫 Ne znam:</span><span id="unknownCards">0</span></div>
-          <div class="stat-item"><span><strong>Uspeh:</strong></span><span id="successRate"><strong>0%</strong></span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // 🔗 Seznam naborov (dodaš še, ko narediš nove JSON datoteke)
-const DATASETS = [
-  { id: "all",   name: "Vse besede", url: "english_words.json" },
-  { id: "unit1", name: "Unit 1",     url: "unit1.json" }
-];
-    const SELECT_KEY = "anki_dataset_id";
-
-    function buildDatasetSelect(){
-      const sel = document.getElementById("dataset");
-      sel.innerHTML = "";
-      DATASETS.forEach(ds => {
-        const opt = document.createElement("option");
-        opt.value = ds.id;
-        opt.textContent = ds.name;
-        sel.appendChild(opt);
-      });
-      // restore last selection
-      const saved = localStorage.getItem(SELECT_KEY);
-      if (saved && DATASETS.find(d => d.id === saved)){
-        sel.value = saved;
-      }
-    }
-
-    function currentDataset(){
-      const sel = document.getElementById("dataset");
-      const id = sel.value;
-      return DATASETS.find(d => d.id === id) || DATASETS[0];
-    }
-
-    async function fetchCards(url){
-      const resp = await fetch(url);
-      if (!resp.ok) throw new Error("Napaka pri prenosu (" + resp.status + ")");
-      const data = await resp.json();
-      // Podpiramo oba tipa: {question,answer} in {slovenian,english}
-      // 🔀 Premeša polje (Fisher–Yates algoritem)
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-// 🔀 premešaj polje (Fisher–Yates)
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-async function fetchCards(url) {
-  // cache off, da dobiš svež JSON
-  const resp = await fetch(url, { cache: "no-store" });
-  if (!resp.ok) throw new Error(`Napaka pri prenosu (${resp.status})`);
-  const data = await resp.json();
-
-  // najprej premešamo surove podatke
-  const shuffled = shuffle([...data]);
-
-  // šele nato jih mapiramo v kartice
-  return shuffled.map((item, index) => ({
-    id: index,
-    slovenian: item.question ?? item.slovenian ?? "",
-    english:  item.answer   ?? item.english   ?? "",
-    status: "unknown"
-  }));
-}
-
-    function setLoadingUI(loading){
-      const front = document.getElementById("cardFront");
-      const back  = document.getElementById("cardBack");
-      const buttons = ["prevBtn","nextBtn","knowBtn","partialBtn","unknownBtn"].map(id=>document.getElementById(id));
-      buttons.forEach(b => b.disabled = loading);
-
-      if (loading){
-        front.textContent = "Nalagam kartice…";
-        back.textContent  = "Prosim počakaj 🙂";
-      }
-    }
-
-    class AnkiApp {
-      constructor(cards){
-        this.cards = cards;
-        this.currentIndex = 0;
-        this.currentFilter = 'all';
-        this.isFlipped = false;
-        this.filteredCards = [...this.cards];
-
-        this.initializeElements();
-        this.setupEventListeners();
-        this.updateDisplay();
-        this.updateStats();
-        this.enableUI();
-      }
-
-      initializeElements(){
-        this.cardElement = document.getElementById('flashcard');
-        this.cardFront = document.getElementById('cardFront');
-        this.cardBack = document.getElementById('cardBack');
-        this.cardCounter = document.getElementById('cardCounter');
-        this.cardContainer = document.getElementById('cardContainer');
-        this.noCardsMessage = document.getElementById('noCardsMessage');
-        this.progressBar = document.getElementById('progressBar');
-
-        this.prevBtn = document.getElementById('prevBtn');
-        this.nextBtn = document.getElementById('nextBtn');
-        this.knowBtn = document.getElementById('knowBtn');
-        this.partialBtn = document.getElementById('partialBtn');
-        this.unknownBtn = document.getElementById('unknownBtn');
-
-        this.filterBtns = document.querySelectorAll('.filter-btn');
-        this.totalCardsSpan = document.getElementById('totalCards');
-        this.knownCardsSpan = document.getElementById('knownCards');
-        this.partialCardsSpan = document.getElementById('partialCards');
-        this.unknownCardsSpan = document.getElementById('unknownCards');
-        this.successRateSpan = document.getElementById('successRate');
-      }
-
-      enableUI(){
-        this.prevBtn.disabled = false;
-        this.nextBtn.disabled = false;
-        this.knowBtn.disabled = false;
-        this.partialBtn.disabled = false;
-        this.unknownBtn.disabled = false;
-      }
-
-      setupEventListeners(){
-        this.cardElement.addEventListener('click', () => this.flipCard());
-        this.prevBtn.addEventListener('click', () => this.previousCard());
-        this.nextBtn.addEventListener('click', () => this.nextCard());
-        this.knowBtn.addEventListener('click', () => this.markCard('known'));
-        this.partialBtn.addEventListener('click', () => this.markCard('partial'));
-        this.unknownBtn.addEventListener('click', () => this.markCard('unknown'));
-
-        this.filterBtns.forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            this.setFilter(e.target.dataset.filter);
-          });
-        });
-
-        document.addEventListener('keydown', (e) => this.handleKeyboard(e));
-      }
-
-      flipCard(){
-        this.isFlipped = !this.isFlipped;
-        this.cardElement.classList.toggle('flipped', this.isFlipped);
-      }
-
-      previousCard(){
-        if (this.filteredCards.length === 0) return;
-        this.currentIndex = (this.currentIndex - 1 + this.filteredCards.length) % this.filteredCards.length;
-        this.updateDisplay();
-      }
-
-      nextCard(){
-        if (this.filteredCards.length === 0) return;
-        this.currentIndex = (this.currentIndex + 1) % this.filteredCards.length;
-        this.updateDisplay();
-      }
-
-      markCard(status){
-        if (this.filteredCards.length === 0) return;
-
-        const currentCard = this.filteredCards[this.currentIndex];
-        const originalIndex = this.cards.findIndex(card => card.id === currentCard.id);
-        this.cards[originalIndex].status = status;
-
-        this.showMarkingFeedback(status);
-
-        setTimeout(() => {
-          this.currentIndex = (this.currentIndex + 1) % this.filteredCards.length;
-          this.applyFilter();
-          if (this.filteredCards.length > 0){
-            if (this.currentIndex >= this.filteredCards.length) this.currentIndex = 0;
-            this.updateDisplay();
-          }
-          this.updateStats();
-        }, 400);
-      }
-
-      showMarkingFeedback(status){
-        const colors = { known:'#28a745', partial:'#ffc107', unknown:'#dc3545' };
-        this.cardElement.style.transform = 'scale(1.05)';
-        this.cardElement.style.boxShadow = `0 0 20px ${colors[status]}`;
-        setTimeout(() => { this.cardElement.style.transform=''; this.cardElement.style.boxShadow=''; }, 250);
-      }
-
-      setFilter(filter){
-        this.currentFilter = filter;
-        this.currentIndex = 0;
-        this.filterBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
-        this.applyFilter();
-        this.updateDisplay();
-      }
-
-      applyFilter(){
-        switch(this.currentFilter){
-          case 'partial': this.filteredCards = this.cards.filter(c => c.status === 'partial'); break;
-          case 'unknown': this.filteredCards = this.cards.filter(c => c.status === 'unknown'); break;
-          default: this.filteredCards = [...this.cards];
-        }
-      }
-
-      updateDisplay(){
-        if (this.filteredCards.length === 0){
-          this.cardContainer.style.display = 'none';
-          this.noCardsMessage.style.display = 'block';
-          this.cardCounter.textContent = 'Ni kartic za prikaz';
-          this.prevBtn.disabled = true;
-          this.nextBtn.disabled = true;
-          return;
-        }
-
-        this.cardContainer.style.display = 'block';
-        this.noCardsMessage.style.display = 'none';
-
-        const currentCard = this.filteredCards[this.currentIndex];
-        this.cardFront.textContent = currentCard.slovenian;
-        this.cardBack.textContent  = currentCard.english;
-
-        this.isFlipped = false;
-        this.cardElement.classList.remove('flipped');
-
-        this.cardCounter.textContent = `Kartica ${this.currentIndex + 1} od ${this.filteredCards.length}`;
-        this.prevBtn.disabled = this.filteredCards.length <= 1;
-        this.nextBtn.disabled = this.filteredCards.length <= 1;
-      }
-
-      updateStats(){
-        const known   = this.cards.filter(c => c.status === 'known').length;
-        const partial = this.cards.filter(c => c.status === 'partial').length;
-        const unknown = this.cards.filter(c => c.status === 'unknown').length;
-        const total   = this.cards.length;
-
-        this.totalCardsSpan.textContent   = total;
-        this.knownCardsSpan.textContent   = known;
-        this.partialCardsSpan.textContent = partial;
-        this.unknownCardsSpan.textContent = unknown;
-
-        const successRate = total > 0 ? Math.round((known / total) * 100) : 0;
-        this.successRateSpan.textContent = `${successRate}%`;
-        const bar = this.progressBar;
-        bar.textContent = `${successRate}%`;
-        bar.style.width = `${successRate}%`;
-        if (successRate >= 80){ bar.style.background = 'linear-gradient(90deg,#28a745,#20c997)'; }
-        else if (successRate >= 60){ bar.style.background = 'linear-gradient(90deg,#ffc107,#fd7e14)'; }
-        else { bar.style.background = 'linear-gradient(90deg,#dc3545,#e74c3c)'; }
-      }
-
-      handleKeyboard(e){
-        switch(e.code){
-          case 'ArrowLeft': e.preventDefault(); this.previousCard(); break;
-          case 'ArrowRight': e.preventDefault(); this.nextCard(); break;
-          case 'Space': e.preventDefault(); this.flipCard(); break;
-          case 'Digit1': e.preventDefault(); this.markCard('known'); break;
-          case 'Digit2': e.preventDefault(); this.markCard('partial'); break;
-          case 'Digit3': e.preventDefault(); this.markCard('unknown'); break;
-        }
-      }
-    }
-
-    // 🚀 Inicializacija: zgradi dropdown, naloži izbran nabor ob kliku
-    buildDatasetSelect();
-
-    const reloadBtn = document.getElementById("reloadBtn");
-    reloadBtn.addEventListener("click", async () => {
-      const ds = currentDataset();
-      localStorage.setItem(SELECT_KEY, ds.id);
-      setLoadingUI(true);
-      try {
-        const cards = await fetchCards(ds.url);
-        window.app = new AnkiApp(cards);
-      } catch (err){
-        console.error(err);
-        document.getElementById('cardFront').textContent = "Napaka pri nalaganju kartic 😢";
-        document.getElementById('cardBack').textContent = "(preveri URL do JSON datoteke)";
-      } finally {
-        setLoadingUI(false);
-      }
+  function buildDatasetSelect(){
+    const sel = document.getElementById("dataset");
+    sel.innerHTML = "";
+    DATASETS.forEach(ds => {
+      const opt = document.createElement("option");
+      opt.value = ds.id;
+      opt.textContent = ds.name;
+      sel.appendChild(opt);
     });
-
-    // Samodejno naloži ob vstopu, če obstaja prejšnja izbira
-    if (localStorage.getItem(SELECT_KEY)){
-      reloadBtn.click();
+    const saved = localStorage.getItem(SELECT_KEY);
+    if (saved && DATASETS.find(d => d.id === saved)){
+      sel.value = saved;
     }
-  </script>
-</body>
-</html>
+  }
+
+  function currentDataset(){
+    const sel = document.getElementById("dataset");
+    const id = sel.value;
+    return DATASETS.find(d => d.id === id) || DATASETS[0];
+  }
+
+  // 🔀 Premešaj polje (Fisher–Yates)
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  // 📥 Naloži JSON in ga naključno preuredi
+  async function fetchCards(url){
+    const resp = await fetch(url, { cache: "no-store" });
+    if (!resp.ok) throw new Error(`Napaka pri prenosu (${resp.status})`);
+    const data = await resp.json();
+
+    // Najprej naključno preuredi surove zapise
+    const shuffled = shuffle([...data]);
+
+    // Nato jih pretvori v kartice
+    return shuffled.map((item, index) => ({
+      id: index,
+      slovenian: item.question ?? item.slovenian ?? "",
+      english:  item.answer   ?? item.english   ?? "",
+      status: "unknown"
+    }));
+  }
+
+  function setLoadingUI(loading){
+    const front = document.getElementById("cardFront");
+    const back  = document.getElementById("cardBack");
+    const buttons = ["prevBtn","nextBtn","knowBtn","partialBtn","unknownBtn"]
+      .map(id=>document.getElementById(id));
+    buttons.forEach(b => b.disabled = loading);
+    if (loading){
+      front.textContent = "Nalagam kartice…";
+      back.textContent  = "Prosim počakaj 🙂";
+    }
+  }
+
+  class AnkiApp {
+    constructor(cards){
+      this.cards = cards;
+      this.currentIndex = 0;
+      this.currentFilter = 'all';
+      this.isFlipped = false;
+      this.filteredCards = [...this.cards];
+
+      this.initializeElements();
+      this.setupEventListeners();
+      this.updateDisplay();
+      this.updateStats();
+      this.enableUI();
+    }
+
+    initializeElements(){
+      this.cardElement = document.getElementById('flashcard');
+      this.cardFront = document.getElementById('cardFront');
+      this.cardBack = document.getElementById('cardBack');
+      this.cardCounter = document.getElementById('cardCounter');
+      this.cardContainer = document.getElementById('cardContainer');
+      this.noCardsMessage = document.getElementById('noCardsMessage');
+      this.progressBar = document.getElementById('progressBar');
+
+      this.prevBtn = document.getElementById('prevBtn');
+      this.nextBtn = document.getElementById('nextBtn');
+      this.knowBtn = document.getElementById('knowBtn');
+      this.partialBtn = document.getElementById('partialBtn');
+      this.unknownBtn = document.getElementById('unknownBtn');
+
+      this.filterBtns = document.querySelectorAll('.filter-btn');
+      this.totalCardsSpan = document.getElementById('totalCards');
+      this.knownCardsSpan = document.getElementById('knownCards');
+      this.partialCardsSpan = document.getElementById('partialCards');
+      this.unknownCardsSpan = document.getElementById('unknownCards');
+      this.successRateSpan = document.getElementById('successRate');
+    }
+
+    enableUI(){
+      this.prevBtn.disabled = false;
+      this.nextBtn.disabled = false;
+      this.knowBtn.disabled = false;
+      this.partialBtn.disabled = false;
+      this.unknownBtn.disabled = false;
+    }
+
+    setupEventListeners(){
+      this.cardElement.addEventListener('click', () => this.flipCard());
+      this.prevBtn.addEventListener('click', () => this.previousCard());
+      this.nextBtn.addEventListener('click', () => this.nextCard());
+      this.knowBtn.addEventListener('click', () => this.markCard('known'));
+      this.partialBtn.addEventListener('click', () => this.markCard('partial'));
+      this.unknownBtn.addEventListener('click', () => this.markCard('unknown'));
+
+      this.filterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          this.setFilter(e.target.dataset.filter);
+        });
+      });
+
+      document.addEventListener('keydown', (e) => this.handleKeyboard(e));
+    }
+
+    flipCard(){
+      this.isFlipped = !this.isFlipped;
+      this.cardElement.classList.toggle('flipped', this.isFlipped);
+    }
+
+    previousCard(){
+      if (this.filteredCards.length === 0) return;
+      this.currentIndex = (this.currentIndex - 1 + this.filteredCards.length) % this.filteredCards.length;
+      this.updateDisplay();
+    }
+
+    nextCard(){
+      if (this.filteredCards.length === 0) return;
+      this.currentIndex = (this.currentIndex + 1) % this.filteredCards.length;
+      this.updateDisplay();
+    }
+
+    markCard(status){
+      if (this.filteredCards.length === 0) return;
+
+      const currentCard = this.filteredCards[this.currentIndex];
+      const originalIndex = this.cards.findIndex(card => card.id === currentCard.id);
+      this.cards[originalIndex].status = status;
+
+      this.showMarkingFeedback(status);
+
+      setTimeout(() => {
+        this.currentIndex = (this.currentIndex + 1) % this.filteredCards.length;
+        this.applyFilter();
+        if (this.filteredCards.length > 0){
+          if (this.currentIndex >= this.filteredCards.length) this.currentIndex = 0;
+          this.updateDisplay();
+        }
+        this.updateStats();
+      }, 400);
+    }
+
+    showMarkingFeedback(status){
+      const colors = { known:'#28a745', partial:'#ffc107', unknown:'#dc3545' };
+      this.cardElement.style.transform = 'scale(1.05)';
+      this.cardElement.style.boxShadow = `0 0 20px ${colors[status]}`;
+      setTimeout(() => { this.cardElement.style.transform=''; this.cardElement.style.boxShadow=''; }, 250);
+    }
+
+    setFilter(filter){
+      this.currentFilter = filter;
+      this.currentIndex = 0;
+      this.filterBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
+      this.applyFilter();
+      this.updateDisplay();
+    }
+
+    applyFilter(){
+      switch(this.currentFilter){
+        case 'partial': this.filteredCards = this.cards.filter(c => c.status === 'partial'); break;
+        case 'unknown': this.filteredCards = this.cards.filter(c => c.status === 'unknown'); break;
+        default: this.filteredCards = [...this.cards];
+      }
+    }
+
+    updateDisplay(){
+      if (this.filteredCards.length === 0){
+        this.cardContainer.style.display = 'none';
+        this.noCardsMessage.style.display = 'block';
+        this.cardCounter.textContent = 'Ni kartic za prikaz';
+        this.prevBtn.disabled = true;
+        this.nextBtn.disabled = true;
+        return;
+      }
+
+      this.cardContainer.style.display = 'block';
+      this.noCardsMessage.style.display = 'none';
+
+      const currentCard = this.filteredCards[this.currentIndex];
+      this.cardFront.textContent = currentCard.slovenian;
+      this.cardBack.textContent  = currentCard.english;
+
+      this.isFlipped = false;
+      this.cardElement.classList.remove('flipped');
+
+      this.cardCounter.textContent = `Kartica ${this.currentIndex + 1} od ${this.filteredCards.length}`;
+      this.prevBtn.disabled = this.filteredCards.length <= 1;
+      this.nextBtn.disabled = this.filteredCards.length <= 1;
+    }
+
+    updateStats(){
+      const known   = this.cards.filter(c => c.status === 'known').length;
+      const partial = this.cards.filter(c => c.status === 'partial').length;
+      const unknown = this.cards.filter(c => c.status === 'unknown').length;
+      const total   = this.cards.length;
+
+      this.totalCardsSpan.textContent   = total;
+      this.knownCardsSpan.textContent   = known;
+      this.partialCardsSpan.textContent = partial;
+      this.unknownCardsSpan.textContent = unknown;
+
+      const successRate = total > 0 ? Math.round((known / total) * 100) : 0;
+      this.successRateSpan.textContent = `${successRate}%`;
+      const bar = this.progressBar;
+      bar.textContent = `${successRate}%`;
+      bar.style.width = `${successRate}%`;
+      if (successRate >= 80){ bar.style.background = 'linear-gradient(90deg,#28a745,#20c997)'; }
+      else if (successRate >= 60){ bar.style.background = 'linear-gradient(90deg,#ffc107,#fd7e14)'; }
+      else { bar.style.background = 'linear-gradient(90deg,#dc3545,#e74c3c)'; }
+    }
+
+    handleKeyboard(e){
+      switch(e.code){
+        case 'ArrowLeft': e.preventDefault(); this.previousCard(); break;
+        case 'ArrowRight': e.preventDefault(); this.nextCard(); break;
+        case 'Space': e.preventDefault(); this.flipCard(); break;
+        case 'Digit1': e.preventDefault(); this.markCard('known'); break;
+        case 'Digit2': e.preventDefault(); this.markCard('partial'); break;
+        case 'Digit3': e.preventDefault(); this.markCard('unknown'); break;
+      }
+    }
+  }
+
+  // 🚀 Inicializacija
+  buildDatasetSelect();
+
+  const reloadBtn = document.getElementById("reloadBtn");
+  reloadBtn.addEventListener("click", async () => {
+    const ds = currentDataset();
+    localStorage.setItem(SELECT_KEY, ds.id);
+    setLoadingUI(true);
+    try {
+      const cards = await fetchCards(ds.url);
+      window.app = new AnkiApp(cards);
+    } catch (err){
+      console.error(err);
+      document.getElementById('cardFront').textContent = "Napaka pri nalaganju kartic 😢";
+      document.getElementById('cardBack').textContent  = "(preveri URL do JSON datoteke)";
+    } finally {
+      setLoadingUI(false);
+    }
+  });
+
+  // Samodejno naloži ob vstopu, če obstaja prejšnja izbira
+  if (localStorage.getItem(SELECT_KEY)){
+    reloadBtn.click();
+  }
+</script>
