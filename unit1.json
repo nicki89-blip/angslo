@@ -1,0 +1,282 @@
+[
+  {
+    "question": "lička",
+    "answer": "cheeks"
+  },
+  {
+    "question": "obraz",
+    "answer": "face"
+  },
+  {
+    "question": "nos",
+    "answer": "nose"
+  },
+  {
+    "question": "ušesa",
+    "answer": "ears"
+  },
+  {
+    "question": "obrvi",
+    "answer": "eyebrows"
+  },
+  {
+    "question": "brada",
+    "answer": "chin"
+  },
+  {
+    "question": "oči",
+    "answer": "eyes"
+  },
+  {
+    "question": "zobje",
+    "answer": "teeth"
+  },
+  {
+    "question": "glava",
+    "answer": "head"
+  },
+  {
+    "question": "usta",
+    "answer": "mouth"
+  },
+  {
+    "question": "rama",
+    "answer": "shoulder"
+  },
+  {
+    "question": "roka",
+    "answer": "arm"
+  },
+  {
+    "question": "lase",
+    "answer": "hair"
+  },
+  {
+    "question": "roka (dlan)",
+    "answer": "hand"
+  },
+  {
+    "question": "prst na nogi",
+    "answer": "toe"
+  },
+  {
+    "question": "prst na roki",
+    "answer": "finger"
+  },
+  {
+    "question": "noga",
+    "answer": "leg"
+  },
+  {
+    "question": "stopalo",
+    "answer": "foot"
+  },
+  {
+    "question": "telo",
+    "answer": "body"
+  },
+  {
+    "question": "hrbet",
+    "answer": "back"
+  },
+  {
+    "question": "jezik",
+    "answer": "tongue"
+  },
+  {
+    "question": "koleno",
+    "answer": "knee"
+  },
+  {
+    "question": "želodec",
+    "answer": "stomach"
+  },
+  {
+    "question": "trebušček",
+    "answer": "belly"
+  },
+  {
+    "question": "trup",
+    "answer": "trunk"
+  },
+  {
+    "question": "vrat",
+    "answer": "neck"
+  },
+  {
+    "question": "pleša",
+    "answer": "bald"
+  },
+  {
+    "question": "temni lasje",
+    "answer": "dark hair"
+  },
+  {
+    "question": "svetli lasje",
+    "answer": "blond hair"
+  },
+  {
+    "question": "skodrani",
+    "answer": "curly"
+  },
+  {
+    "question": "ravni",
+    "answer": "straight"
+  },
+  {
+    "question": "valoviti",
+    "answer": "wavy"
+  },
+  {
+    "question": "dolgi",
+    "answer": "long"
+  },
+  {
+    "question": "kratki (na ježka)",
+    "answer": "crew cut"
+  },
+  {
+    "question": "dva čopa",
+    "answer": "pigtails"
+  },
+  {
+    "question": "en čop",
+    "answer": "ponytail"
+  },
+  {
+    "question": "fru fru",
+    "answer": "fringe"
+  },
+  {
+    "question": "žalosten",
+    "answer": "sad"
+  },
+  {
+    "question": "jezen",
+    "answer": "angry"
+  },
+  {
+    "question": "ponosen",
+    "answer": "proud"
+  },
+  {
+    "question": "prestrašen",
+    "answer": "scared"
+  },
+  {
+    "question": "resen",
+    "answer": "serious"
+  },
+  {
+    "question": "vesel",
+    "answer": "happy"
+  },
+  {
+    "question": "Ko sem žalosten, jočem.",
+    "answer": "When I'm sad, I cry."
+  },
+  {
+    "question": "Ko sem radoveden, vprašam.",
+    "answer": "When I'm curious, I ask."
+  },
+  {
+    "question": "Ko sem zdolgočasen, spim.",
+    "answer": "When I'm bored, I sleep."
+  },
+  {
+    "question": "Ko sem vesel, se smejim.",
+    "answer": "When I'm happy, I smile."
+  },
+  {
+    "question": "Ko sem sramežljiv, se skrijem.",
+    "answer": "When I'm shy, I hide."
+  },
+  {
+    "question": "Ko sem prestrašen, zakričim.",
+    "answer": "When I'm scared, I scream."
+  },
+  {
+    "question": "Ko sem zaljubljen, se poljubim.",
+    "answer": "When I'm loving, I kiss."
+  },
+  {
+    "question": "Ko sem zmeden, skomignem z rameni.",
+    "answer": "When I'm puzzled, I shrug."
+  },
+  {
+    "question": "Kaj lahko delajo tvoje oči?",
+    "answer": "What can your eyes do? They can see."
+  },
+  {
+    "question": "Kaj lahko delajo tvoji zobje?",
+    "answer": "What can your teeth do? They can chew."
+  },
+  {
+    "question": "Kaj lahko delajo tvoja ušesa?",
+    "answer": "What can your ears do? They can hear."
+  },
+  {
+    "question": "Kaj lahko delajo tvoje roke?",
+    "answer": "What can your arms do? They can hug."
+  },
+  {
+    "question": "Kaj lahko delajo tvoji prsti?",
+    "answer": "What can your fingers do? They can touch."
+  },
+  {
+    "question": "Kaj lahko dela tvoj hrbet?",
+    "answer": "What can your back do? It can bend."
+  },
+  {
+    "question": "Kaj lahko delajo tvoje noge?",
+    "answer": "What can your legs do? They can run."
+  },
+  {
+    "question": "Kaj lahko delajo tvoja usta?",
+    "answer": "What can your mouth do? It can kiss."
+  },
+  {
+    "question": "Kaj lahko dela tvoj nos?",
+    "answer": "What can your nose do? It can smell."
+  },
+  {
+    "question": "Kaj lahko delajo tvoje dlani?",
+    "answer": "What can your hands do? They can clap."
+  },
+  {
+    "question": "Kaj lahko dela tvoja glava?",
+    "answer": "What can your head do? It can nod."
+  },
+  {
+    "question": "Z rokami lahko ploskam.",
+    "answer": "I can clap with my hands."
+  },
+  {
+    "question": "S prsti se lahko dotaknem.",
+    "answer": "I can touch with my fingers."
+  },
+  {
+    "question": "Z rokami lahko objamem.",
+    "answer": "I can hug with my arms."
+  },
+  {
+    "question": "Z zobmi lahko žvečim.",
+    "answer": "I can chew with my teeth."
+  },
+  {
+    "question": "S stopali lahko brcam.",
+    "answer": "I can kick with my feet."
+  },
+  {
+    "question": "S prsti na nogi hodim po prstih.",
+    "answer": "I can tiptoe with my toes."
+  },
+  {
+    "question": "Z glavo lahko prikimam.",
+    "answer": "I can nod with my head."
+  },
+  {
+    "question": "S hrbtom se lahko upognem.",
+    "answer": "I can bend my back."
+  }
+]
