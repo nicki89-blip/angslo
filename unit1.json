@@ -1,6 +1,6 @@
 [
   {
-    "question": "licka",
+    "question": "lička",
     "answer": "cheeks"
   },
   {
@@ -28,8 +28,16 @@
     "answer": "eyes"
   },
   {
+    "question": "oko",
+    "answer": "eye"
+  },
+  {
     "question": "zobje",
     "answer": "teeth"
+  },
+  {
+    "question": "zob",
+    "answer": "tooth"
   },
   {
     "question": "glava",
@@ -42,6 +50,10 @@
   {
     "question": "rama",
     "answer": "shoulder"
+  },
+  {
+    "question": "ramena",
+    "answer": "shoulders"
   },
   {
     "question": "roka",
@@ -96,7 +108,7 @@
     "answer": "belly"
   },
   {
-    "question": "trup",
+    "question": "rilec",
     "answer": "trunk"
   },
   {
@@ -104,7 +116,7 @@
     "answer": "neck"
   },
   {
-    "question": "pleša",
+    "question": "plešast",
     "answer": "bald"
   },
   {
@@ -204,47 +216,47 @@
     "answer": "When I'm puzzled, I shrug."
   },
   {
-    "question": "Kaj lahko delajo tvoje oči?",
+    "question": "Kaj lahko delajo tvoje oči? Lahko vidijo.",
     "answer": "What can your eyes do? They can see."
   },
   {
-    "question": "Kaj lahko delajo tvoji zobje?",
+    "question": "Kaj lahko delajo tvoji zobje? Lahko žvečijo.",
     "answer": "What can your teeth do? They can chew."
   },
   {
-    "question": "Kaj lahko delajo tvoja ušesa?",
+    "question": "Kaj lahko delajo tvoja ušesa? Lahko slišijo.",
     "answer": "What can your ears do? They can hear."
   },
   {
-    "question": "Kaj lahko delajo tvoje roke?",
+    "question": "Kaj lahko delajo tvoje roke? Lahko objamejo.",
     "answer": "What can your arms do? They can hug."
   },
   {
-    "question": "Kaj lahko delajo tvoji prsti?",
+    "question": "Kaj lahko delajo tvoji prsti? Lahko se dotaknejo",
     "answer": "What can your fingers do? They can touch."
   },
   {
-    "question": "Kaj lahko dela tvoj hrbet?",
+    "question": "Kaj lahko dela tvoj hrbet? Lahko se upogne.",
     "answer": "What can your back do? It can bend."
   },
   {
-    "question": "Kaj lahko delajo tvoje noge?",
+    "question": "Kaj lahko delajo tvoje noge? Lahko tečejo.",
     "answer": "What can your legs do? They can run."
   },
   {
-    "question": "Kaj lahko delajo tvoja usta?",
+    "question": "Kaj lahko delajo tvoja usta? Lahko poljubijo.",
     "answer": "What can your mouth do? It can kiss."
   },
   {
-    "question": "Kaj lahko dela tvoj nos?",
+    "question": "Kaj lahko dela tvoj nos? Lahko voha.",
     "answer": "What can your nose do? It can smell."
   },
   {
-    "question": "Kaj lahko delajo tvoje dlani?",
+    "question": "Kaj lahko delajo tvoje dlani? Lahko ploskajo.",
     "answer": "What can your hands do? They can clap."
   },
   {
-    "question": "Kaj lahko dela tvoja glava?",
+    "question": "Kaj lahko dela tvoja glava? Lahko prikima.",
     "answer": "What can your head do? It can nod."
   },
   {
