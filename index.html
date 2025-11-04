@@ -179,22 +179,31 @@ function shuffle(arr) {
   }
   return arr;
 }
+// 🔀 premešaj polje (Fisher–Yates)
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
 async function fetchCards(url) {
-  const resp = await fetch(url);
-  if (!resp.ok) throw new Error("Napaka pri prenosu (" + resp.status + ")");
+  // cache off, da dobiš svež JSON
+  const resp = await fetch(url, { cache: "no-store" });
+  if (!resp.ok) throw new Error(`Napaka pri prenosu (${resp.status})`);
   const data = await resp.json();
 
-  // Podpiramo oba tipa: {question,answer} in {slovenian,english}
-  const cards = data.map((item, index) => ({
+  // najprej premešamo surove podatke
+  const shuffled = shuffle([...data]);
+
+  // šele nato jih mapiramo v kartice
+  return shuffled.map((item, index) => ({
     id: index,
     slovenian: item.question ?? item.slovenian ?? "",
-    english: item.answer ?? item.english ?? "",
+    english:  item.answer   ?? item.english   ?? "",
     status: "unknown"
   }));
-
-  shuffle(cards); // 🔀 naključni vrstni red pri vsakem nalaganju
-  return cards;
 }
 
     function setLoadingUI(loading){
