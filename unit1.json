@@ -108,7 +108,7 @@
     "answer": "belly"
   },
   {
-    "question": "rilec",
+    "question": "trup",
     "answer": "trunk"
   },
   {
@@ -232,7 +232,7 @@
     "answer": "What can your arms do? They can hug."
   },
   {
-    "question": "Kaj lahko delajo tvoji prsti? Lahko se dotaknejo",
+    "question": "Kaj lahko delajo tvoji prsti? Lahko se dotaknejo.",
     "answer": "What can your fingers do? They can touch."
   },
   {
@@ -290,41 +290,41 @@
   {
     "question": "S hrbtom se lahko upognem.",
     "answer": "I can bend my back."
-  }
-  {
-    "question": "Before meals wash your hands.",
-    "answer": "Pred obroki si umij roke."
   },
   {
-    "question": "Eat with a fork, a knife and a spoon.",
-    "answer": "Jej z vilicami, nožem in žlico."
+    "question": "Pred obroki si umij roke.",
+    "answer": "Before meals wash your hands."
   },
   {
-    "question": "Chew with your mouth closed.",
-    "answer": "Žveči z zaprtimi usti."
+    "question": "Jej z vilicami, nožem in žlico.",
+    "answer": "Eat with a fork, a knife and a spoon."
   },
   {
-    "question": "Wipe your mouth with a napkin.",
-    "answer": "Obriši si usta s prtičkom."
+    "question": "Žveči z zaprtimi usti.",
+    "answer": "Chew with your mouth closed."
   },
   {
-    "question": "Sit nicely and still.",
-    "answer": "Sedi lepo in mirno."
+    "question": "Obriši si usta s prtičkom.",
+    "answer": "Wipe your mouth with a napkin."
   },
   {
-    "question": "Say thank you when served food and drinks.",
-    "answer": "Reci hvala, ko ti postrežejo hrano ali pijačo."
+    "question": "Sedi lepo in mirno.",
+    "answer": "Sit nicely and still."
   },
   {
-    "question": "Take your elbows off the table.",
-    "answer": "Dvigni komolce z mize."
+    "question": "Reci hvala, ko ti postrežejo hrano ali pijačo.",
+    "answer": "Say thank you when served food and drinks."
   },
   {
-    "question": "Keep your feet on the floor.",
-    "answer": "Imej noge na tleh."
+    "question": "Dvigni komolce z mize.",
+    "answer": "Take your elbows off the table."
   },
   {
-    "question": "If you're still hungry, ask for more.",
-    "answer": "Če si še lačen, prosi za več."
+    "question": "Imej noge na tleh.",
+    "answer": "Keep your feet on the floor."
+  },
+  {
+    "question": "Če si še lačen, prosi za več.",
+    "answer": "If you're still hungry, ask for more."
   }
 ]
