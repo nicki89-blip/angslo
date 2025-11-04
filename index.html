@@ -171,13 +171,31 @@ const DATASETS = [
       if (!resp.ok) throw new Error("Napaka pri prenosu (" + resp.status + ")");
       const data = await resp.json();
       // Podpiramo oba tipa: {question,answer} in {slovenian,english}
-      return data.map((item, index) => ({
-        id: index,
-        slovenian: item.question ?? item.slovenian ?? "",
-        english: item.answer ?? item.english ?? "",
-        status: "unknown"
-      }));
-    }
+      // 🔀 Premeša polje (Fisher–Yates algoritem)
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+async function fetchCards(url) {
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error("Napaka pri prenosu (" + resp.status + ")");
+  const data = await resp.json();
+
+  // Podpiramo oba tipa: {question,answer} in {slovenian,english}
+  const cards = data.map((item, index) => ({
+    id: index,
+    slovenian: item.question ?? item.slovenian ?? "",
+    english: item.answer ?? item.english ?? "",
+    status: "unknown"
+  }));
+
+  shuffle(cards); // 🔀 naključni vrstni red pri vsakem nalaganju
+  return cards;
+}
 
     function setLoadingUI(loading){
       const front = document.getElementById("cardFront");
