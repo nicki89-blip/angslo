@@ -73,6 +73,9 @@ class AnkiApp {
     this.currentFilter = 'all';
     this.isFlipped = false;
     this.filteredCards = [...this.cards];
+    
+    // ⭐ HISTORY STACK: To remember which cards we just saw
+    this.history = []; 
 
     this.initializeElements();
     this.setupEventListeners();
@@ -134,24 +137,32 @@ class AnkiApp {
     this.cardElement.classList.toggle('flipped', this.isFlipped);
   }
 
+  // ⭐ MODIFIED: GO BACK IN HISTORY
   previousCard(){
-    if (this.filteredCards.length === 0) return;
-    // Note: In random mode, 'previous' is mathematical previous index, not history.
-    this.currentIndex = (this.currentIndex - 1 + this.filteredCards.length) % this.filteredCards.length;
-    this.updateDisplay();
+    if (this.history.length > 0) {
+      // Pop the last index from history and set it as current
+      this.currentIndex = this.history.pop();
+      this.updateDisplay();
+    }
   }
 
-  // --- MODIFIED: THIS FUNCTION NOW PICKS A RANDOM CARD ---
+  // ⭐ MODIFIED: SAVE HISTORY BEFORE JUMPING
   nextCard(){
     if (this.filteredCards.length === 0) return;
     
-    // Pick a random number between 0 and total cards
+    // 1. Save current card to history before leaving it
+    this.history.push(this.currentIndex);
+
+    // 2. Pick a random number
     let randomIndex = Math.floor(Math.random() * this.filteredCards.length);
     
-    // If we have more than 1 card, try not to show the same one twice in a row
+    // 3. Avoid same card twice if possible
     if (this.filteredCards.length > 1) {
-        while (randomIndex === this.currentIndex) {
+        // Try up to 3 times to find a different card to avoid infinite loops in edge cases
+        let attempts = 0;
+        while (randomIndex === this.currentIndex && attempts < 3) {
             randomIndex = Math.floor(Math.random() * this.filteredCards.length);
+            attempts++;
         }
     }
 
@@ -169,17 +180,22 @@ class AnkiApp {
     this.showMarkingFeedback(status);
 
     setTimeout(() => {
-      // --- MODIFIED: RANDOM JUMP AFTER MARKING ---
-      this.applyFilter(); // Re-apply filter first
+      // ⭐ Save history even when marking, so you can go back if you made a mistake
+      // Note: If the filter changes (e.g. from Unknown to Known), going back might be tricky, 
+      // but saving the index is the safest bet for general navigation.
+      this.history.push(this.currentIndex);
+
+      this.applyFilter(); 
       
       if (this.filteredCards.length > 0){
-        // Pick random index
+        // Pick random index for next card
         let nextIndex = Math.floor(Math.random() * this.filteredCards.length);
         
-        // Prevent repeat if possible
         if (this.filteredCards.length > 1) {
-            while (nextIndex === this.currentIndex) {
+            let attempts = 0;
+            while (nextIndex === this.currentIndex && attempts < 3) {
                  nextIndex = Math.floor(Math.random() * this.filteredCards.length);
+                 attempts++;
             }
         }
         this.currentIndex = nextIndex;
@@ -199,8 +215,11 @@ class AnkiApp {
 
   setFilter(filter){
     this.currentFilter = filter;
-    // When changing filter, pick a random card immediately
+    // ⭐ Clear history when changing filters because indices change meaning
+    this.history = []; 
+    
     this.applyFilter();
+    
     if (this.filteredCards.length > 0) {
         this.currentIndex = Math.floor(Math.random() * this.filteredCards.length);
     } else {
@@ -239,7 +258,10 @@ class AnkiApp {
     this.cardElement.classList.remove('flipped');
 
     this.cardCounter.textContent = `Kartica ${this.currentIndex + 1} od ${this.filteredCards.length}`;
-    this.prevBtn.disabled = this.filteredCards.length <= 1;
+    
+    // ⭐ Only enable Previous button if we have history
+    this.prevBtn.disabled = this.history.length === 0;
+    
     this.nextBtn.disabled = this.filteredCards.length <= 1;
   }
 
