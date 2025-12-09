@@ -41,7 +41,7 @@ async function fetchCards(url){
   if (!resp.ok) throw new Error("Napaka pri prenosu (" + resp.status + ")");
   const data = await resp.json();
 
-  // najprej premešamo surove podatke
+  // 1. THIS RANDOMIZES THE LIST ON LOAD
   const shuffled = shuffle([...data]);
 
   // nato mapiramo v strukturo kartic
@@ -73,9 +73,6 @@ class AnkiApp {
     this.currentFilter = 'all';
     this.isFlipped = false;
     this.filteredCards = [...this.cards];
-    
-    // ⭐ HISTORY STACK: To remember which cards we just saw
-    this.history = []; 
 
     this.initializeElements();
     this.setupEventListeners();
@@ -137,36 +134,27 @@ class AnkiApp {
     this.cardElement.classList.toggle('flipped', this.isFlipped);
   }
 
-  // ⭐ MODIFIED: GO BACK IN HISTORY
+  // 2. LINEAR PREVIOUS BUTTON
   previousCard(){
-    if (this.history.length > 0) {
-      // Pop the last index from history and set it as current
-      this.currentIndex = this.history.pop();
-      this.updateDisplay();
+    if (this.filteredCards.length === 0) return;
+    // Moves index back by 1. If at 0, wraps to the end.
+    this.currentIndex--;
+    if (this.currentIndex < 0) {
+        this.currentIndex = this.filteredCards.length - 1;
     }
+    this.updateDisplay();
   }
 
-  // ⭐ MODIFIED: SAVE HISTORY BEFORE JUMPING
+  // 3. LINEAR NEXT BUTTON
   nextCard(){
     if (this.filteredCards.length === 0) return;
     
-    // 1. Save current card to history before leaving it
-    this.history.push(this.currentIndex);
-
-    // 2. Pick a random number
-    let randomIndex = Math.floor(Math.random() * this.filteredCards.length);
-    
-    // 3. Avoid same card twice if possible
-    if (this.filteredCards.length > 1) {
-        // Try up to 3 times to find a different card to avoid infinite loops in edge cases
-        let attempts = 0;
-        while (randomIndex === this.currentIndex && attempts < 3) {
-            randomIndex = Math.floor(Math.random() * this.filteredCards.length);
-            attempts++;
-        }
+    // Moves index forward by 1. If at end, wraps to start.
+    this.currentIndex++;
+    if (this.currentIndex >= this.filteredCards.length) {
+        this.currentIndex = 0;
     }
 
-    this.currentIndex = randomIndex;
     this.updateDisplay();
   }
 
@@ -175,33 +163,16 @@ class AnkiApp {
 
     const currentCard = this.filteredCards[this.currentIndex];
     const originalIndex = this.cards.findIndex(card => card.id === currentCard.id);
-    this.cards[originalIndex].status = status;
+    if (originalIndex !== -1) {
+        this.cards[originalIndex].status = status;
+    }
 
     this.showMarkingFeedback(status);
 
     setTimeout(() => {
-      // ⭐ Save history even when marking, so you can go back if you made a mistake
-      // Note: If the filter changes (e.g. from Unknown to Known), going back might be tricky, 
-      // but saving the index is the safest bet for general navigation.
-      this.history.push(this.currentIndex);
-
-      this.applyFilter(); 
-      
-      if (this.filteredCards.length > 0){
-        // Pick random index for next card
-        let nextIndex = Math.floor(Math.random() * this.filteredCards.length);
-        
-        if (this.filteredCards.length > 1) {
-            let attempts = 0;
-            while (nextIndex === this.currentIndex && attempts < 3) {
-                 nextIndex = Math.floor(Math.random() * this.filteredCards.length);
-                 attempts++;
-            }
-        }
-        this.currentIndex = nextIndex;
-        
-        this.updateDisplay();
-      }
+      // 4. AFTER MARKING, MOVE TO NEXT CARD (LINEARLY)
+      // We do NOT re-filter here, to preserve the list order for "Previous" button history.
+      this.nextCard();
       this.updateStats();
     }, 400);
   }
@@ -215,16 +186,9 @@ class AnkiApp {
 
   setFilter(filter){
     this.currentFilter = filter;
-    // ⭐ Clear history when changing filters because indices change meaning
-    this.history = []; 
-    
     this.applyFilter();
-    
-    if (this.filteredCards.length > 0) {
-        this.currentIndex = Math.floor(Math.random() * this.filteredCards.length);
-    } else {
-        this.currentIndex = 0;
-    }
+    // When changing filter, reset to start of that specific list
+    this.currentIndex = 0;
     this.filterBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
     this.updateDisplay();
   }
@@ -258,10 +222,7 @@ class AnkiApp {
     this.cardElement.classList.remove('flipped');
 
     this.cardCounter.textContent = `Kartica ${this.currentIndex + 1} od ${this.filteredCards.length}`;
-    
-    // ⭐ Only enable Previous button if we have history
-    this.prevBtn.disabled = this.history.length === 0;
-    
+    this.prevBtn.disabled = this.filteredCards.length <= 1;
     this.nextBtn.disabled = this.filteredCards.length <= 1;
   }
 
