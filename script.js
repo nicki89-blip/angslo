@@ -46,12 +46,22 @@ async function fetchCards(url){
   const shuffled = shuffle([...data]);
 
   // mapiramo v strukturo kartic
-  return shuffled.map((item, index) => ({
-    id: index,
-    slovenian: item.question ?? item.slovenian ?? "",
-    english:  item.answer   ?? item.english   ?? "",
-    status: "unknown"
-  }));
+  return shuffled.map((item, index) => {
+    const valSlo = item.question ?? item.slovenian ?? "";
+    const valEng = item.answer   ?? item.english   ?? "";
+
+    // 50/50 chance:
+    // true = Slovenian on front, English on back
+    // false = English on front, Slovenian on back
+    const isSloToEng = Math.random() < 0.5;
+
+    return {
+      id: index,
+      front: isSloToEng ? valSlo : valEng,
+      back:  isSloToEng ? valEng : valSlo,
+      status: "unknown"
+    };
+  });
 }
 
 function setLoadingUI(loading){
@@ -154,7 +164,6 @@ class AnkiApp {
     if (this.filteredCards.length === 0) return;
     
     // STRICTLY MATHEMATICAL NEXT (Index + 1)
-    // No Math.random() here anymore!
     this.currentIndex++;
     
     // Loop to start if at end
@@ -178,7 +187,6 @@ class AnkiApp {
 
     setTimeout(() => {
       // 4. AFTER MARKING, MOVE TO NEXT CARD (LINEARLY)
-      // This allows you to go "Previous" to see the card you just marked
       this.nextCard();
       this.updateStats();
     }, 400);
@@ -222,8 +230,10 @@ class AnkiApp {
     this.noCardsMessage.style.display = 'none';
 
     const currentCard = this.filteredCards[this.currentIndex];
-    this.cardFront.textContent = currentCard.slovenian;
-    this.cardBack.textContent  = currentCard.english;
+    
+    // CHANGED: Use 'front' and 'back' properties which were randomized in fetchCards
+    this.cardFront.textContent = currentCard.front;
+    this.cardBack.textContent  = currentCard.back;
 
     this.isFlipped = false;
     this.cardElement.classList.remove('flipped');
