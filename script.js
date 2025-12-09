@@ -136,13 +136,26 @@ class AnkiApp {
 
   previousCard(){
     if (this.filteredCards.length === 0) return;
+    // Note: In random mode, 'previous' is mathematical previous index, not history.
     this.currentIndex = (this.currentIndex - 1 + this.filteredCards.length) % this.filteredCards.length;
     this.updateDisplay();
   }
 
+  // --- MODIFIED: THIS FUNCTION NOW PICKS A RANDOM CARD ---
   nextCard(){
     if (this.filteredCards.length === 0) return;
-    this.currentIndex = (this.currentIndex + 1) % this.filteredCards.length;
+    
+    // Pick a random number between 0 and total cards
+    let randomIndex = Math.floor(Math.random() * this.filteredCards.length);
+    
+    // If we have more than 1 card, try not to show the same one twice in a row
+    if (this.filteredCards.length > 1) {
+        while (randomIndex === this.currentIndex) {
+            randomIndex = Math.floor(Math.random() * this.filteredCards.length);
+        }
+    }
+
+    this.currentIndex = randomIndex;
     this.updateDisplay();
   }
 
@@ -156,10 +169,21 @@ class AnkiApp {
     this.showMarkingFeedback(status);
 
     setTimeout(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.filteredCards.length;
-      this.applyFilter();
+      // --- MODIFIED: RANDOM JUMP AFTER MARKING ---
+      this.applyFilter(); // Re-apply filter first
+      
       if (this.filteredCards.length > 0){
-        if (this.currentIndex >= this.filteredCards.length) this.currentIndex = 0;
+        // Pick random index
+        let nextIndex = Math.floor(Math.random() * this.filteredCards.length);
+        
+        // Prevent repeat if possible
+        if (this.filteredCards.length > 1) {
+            while (nextIndex === this.currentIndex) {
+                 nextIndex = Math.floor(Math.random() * this.filteredCards.length);
+            }
+        }
+        this.currentIndex = nextIndex;
+        
         this.updateDisplay();
       }
       this.updateStats();
@@ -175,9 +199,14 @@ class AnkiApp {
 
   setFilter(filter){
     this.currentFilter = filter;
-    this.currentIndex = 0;
-    this.filterBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
+    // When changing filter, pick a random card immediately
     this.applyFilter();
+    if (this.filteredCards.length > 0) {
+        this.currentIndex = Math.floor(Math.random() * this.filteredCards.length);
+    } else {
+        this.currentIndex = 0;
+    }
+    this.filterBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
     this.updateDisplay();
   }
 
