@@ -41,10 +41,11 @@ async function fetchCards(url){
   if (!resp.ok) throw new Error("Napaka pri prenosu (" + resp.status + ")");
   const data = await resp.json();
 
-  // 1. THIS RANDOMIZES THE LIST ON LOAD
+  // 1. THIS RANDOMIZES THE LIST ON LOAD ONLY
+  // This creates the "shuffled deck" for this session
   const shuffled = shuffle([...data]);
 
-  // nato mapiramo v strukturo kartic
+  // mapiramo v strukturo kartic
   return shuffled.map((item, index) => ({
     id: index,
     slovenian: item.question ?? item.slovenian ?? "",
@@ -137,8 +138,11 @@ class AnkiApp {
   // 2. LINEAR PREVIOUS BUTTON
   previousCard(){
     if (this.filteredCards.length === 0) return;
-    // Moves index back by 1. If at 0, wraps to the end.
+    
+    // STRICTLY MATHEMATICAL PREVIOUS (Index - 1)
     this.currentIndex--;
+    
+    // Loop to end if at beginning
     if (this.currentIndex < 0) {
         this.currentIndex = this.filteredCards.length - 1;
     }
@@ -149,8 +153,11 @@ class AnkiApp {
   nextCard(){
     if (this.filteredCards.length === 0) return;
     
-    // Moves index forward by 1. If at end, wraps to start.
+    // STRICTLY MATHEMATICAL NEXT (Index + 1)
+    // No Math.random() here anymore!
     this.currentIndex++;
+    
+    // Loop to start if at end
     if (this.currentIndex >= this.filteredCards.length) {
         this.currentIndex = 0;
     }
@@ -171,7 +178,7 @@ class AnkiApp {
 
     setTimeout(() => {
       // 4. AFTER MARKING, MOVE TO NEXT CARD (LINEARLY)
-      // We do NOT re-filter here, to preserve the list order for "Previous" button history.
+      // This allows you to go "Previous" to see the card you just marked
       this.nextCard();
       this.updateStats();
     }, 400);
@@ -187,7 +194,7 @@ class AnkiApp {
   setFilter(filter){
     this.currentFilter = filter;
     this.applyFilter();
-    // When changing filter, reset to start of that specific list
+    // Reset to start of the list when changing filter
     this.currentIndex = 0;
     this.filterBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
     this.updateDisplay();
