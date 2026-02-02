@@ -13,16 +13,9 @@
       <div class="dataset-picker">
         <label for="dataset">Naloži nabor:</label>
         <select id="dataset" class="select" title="Izberi nabor kartic">
-    <option value="unit1.json">Unit 1</option> 
-
-    <option value="unit2.json">Unit 2</option>
-</select>
+        </select>
         <button id="reloadBtn" class="reload" title="Ponovno naloži izbrani nabor">Naloži</button>
       </div>
-    </div>
-
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar">0%</div>
     </div>
 
     <div class="main-content">
@@ -31,51 +24,31 @@
 
         <div id="cardContainer" class="card-container">
           <div class="card" id="flashcard">
-            <div class="card-face card-front" id="cardFront">Izberi nabor in klikni “Naloži”</div>
+            <div class="card-face card-front" id="cardFront">Izberi nabor in klikni "Naloži"</div>
             <div class="card-face card-back" id="cardBack">🙂</div>
           </div>
         </div>
 
-        <div id="noCardsMessage" class="no-cards" style="display:none;">
-          <h3>🎉 Odlično!</h3>
-          <p>Ni več kartic za prikaz v tem filtru.</p>
-          <p>Izberite drug filter ali nadaljujte z učenjem!</p>
+        <!-- Audio Button -->
+        <div class="audio-controls">
+          <button class="btn-audio" id="audioBtn" title="Poslušaj izgovorjavo" disabled>
+            🔊 Poslušaj
+          </button>
         </div>
 
         <div class="controls">
-          <button class="btn btn-nav" id="prevBtn" disabled>⬅️ Prejšnja</button>
-          <button class="btn btn-nav" id="nextBtn" disabled>Naslednja ➡️</button>
-        </div>
-
-        <div class="knowledge-buttons">
-          <button class="btn btn-know" id="knowBtn" disabled>✅ Znam</button>
-          <button class="btn btn-partial" id="partialBtn" disabled>😐 Delno</button>
-          <button class="btn btn-unknown" id="unknownBtn" disabled>🚫 Ne znam</button>
+          <button class="btn" id="prevBtn" disabled>⬅️ Prejšnja</button>
+          <button class="btn" id="nextBtn" disabled>Naslednja ➡️</button>
         </div>
 
         <div class="keyboard-hint">
-          💡 Puščice za navigacijo, presledek za obračanje kartice (1=Znam, 2=Delno, 3=Ne znam)
-        </div>
-      </div>
-
-      <div class="sidebar">
-        <h3>🎯 Filtri</h3>
-        <button class="filter-btn active" data-filter="all">📚 Vse kartice</button>
-        <button class="filter-btn" data-filter="partial">😐 Delno znam</button>
-        <button class="filter-btn" data-filter="unknown">🚫 Ne znam</button>
-
-        <div class="stats">
-          <h3>📊 Statistike</h3>
-          <div class="stat-item"><span>Skupaj kartic:</span><span id="totalCards">0</span></div>
-          <div class="stat-item"><span>✅ Znam:</span><span id="knownCards">0</span></div>
-          <div class="stat-item"><span>😐 Delno:</span><span id="partialCards">0</span></div>
-          <div class="stat-item"><span>🚫 Ne znam:</span><span id="unknownCards">0</span></div>
-          <div class="stat-item"><span><strong>Uspeh:</strong></span><span id="successRate"><strong>0%</strong></span></div>
+          💡 Puščice za navigacijo, presledek za obračanje kartice
+          <br>👆 Povleci levo/desno za navigacijo na mobilnih napravah
         </div>
       </div>
     </div>
   </div>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
