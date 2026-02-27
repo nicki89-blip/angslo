@@ -515,33 +515,12 @@ class FlashcardApp {
   playAudio() {
     if (!this.cards || this.cards.length === 0) return;
     const text = this.cards[this.currentIndex].english;
-    
     if (text && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const utt = new SpeechSynthesisUtterance(text);
-      utt.lang = 'en-GB'; 
-      utt.rate = 0.9;
-
-      const voices = window.speechSynthesis.getVoices();
-      
-      // 1. Try to find Serena specifically
-      let chosenVoice = voices.find(v => v.name.includes('Serena'));
-      
-      // 2. If Serena isn't on this device, fall back to another UK female voice
-      if (!chosenVoice) {
-        chosenVoice = voices.find(v => 
-          (v.lang === 'en-GB' || v.lang === 'en_GB') && 
-          (v.name.includes('Female') || v.name.includes('Hazel') || v.name.includes('Martha'))
-        );
-      }
-
-      // 3. Apply the voice if we found one
-      if (chosenVoice) {
-        utt.voice = chosenVoice;
-      }
-
+      utt.lang = 'en-US'; utt.rate = 0.9;
       window.speechSynthesis.speak(utt);
-    }s
+    }
   }
 
   setupEventListeners() {
