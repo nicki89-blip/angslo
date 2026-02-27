@@ -3,53 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Anki Kartice – Angleščina</title>
-  <link rel="stylesheet" href="style.css?v=2.0">
+  <title>Učko</title>
+  <link rel="stylesheet" href="style.css?v=6.0">
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <h1>🎓 Anki Kartice - Angleščina</h1>
-      <div class="dataset-picker">
-        <label for="dataset">Naloži nabor:</label>
-        <select id="dataset" class="select" title="Izberi nabor kartic">
-        </select>
-        <button id="reloadBtn" class="reload" title="Ponovno naloži izbrani nabor">Naloži</button>
-      </div>
-    </div>
 
-    <div class="main-content">
-      <div class="card-section">
-        <div class="card-counter" id="cardCounter">Kartica 0 od 0</div>
+    <!-- ═══ COMPACT TOOLBAR ═══ -->
+    <div class="toolbar">
 
-        <div id="cardContainer" class="card-container">
-          <div class="card" id="flashcard">
-            <div class="card-face card-front" id="cardFront">Izberi nabor in klikni "Naloži"</div>
-            <div class="card-face card-back" id="cardBack">🙂</div>
+      <div class="brand">🦉 <span>Učko</span></div>
+
+      <div class="toolbar-controls">
+
+        <!-- Dataset -->
+        <div class="ctrl-group">
+          <label class="ctrl-label" for="dataset">Nabor</label>
+          <select id="dataset" class="select" title="Izberi nabor kartic"></select>
+          <button id="reloadBtn" class="reload-btn" title="Naloži">↻</button>
+        </div>
+
+        <!-- Mode -->
+        <div class="ctrl-group">
+          <label class="ctrl-label" for="modeSelect">Način</label>
+          <select id="modeSelect" class="select">
+            <option value="flashcard">🃏 Kartice</option>
+            <option value="quiz">🎯 Kviz</option>
+          </select>
+        </div>
+
+        <!-- Filters -->
+        <div class="ctrl-group">
+          <label class="ctrl-label">Filter</label>
+          <div class="filter-dropdown">
+            <button class="filter-btn" id="filterToggle">⚙ Besede ▾</button>
+            <div class="filter-panel" id="filterPanel">
+              <label class="toggle-lbl"><input type="checkbox" id="chkWords" checked> Besede</label>
+              <label class="toggle-lbl"><input type="checkbox" id="chkPhrases" checked> Besedne zveze</label>
+              <label class="toggle-lbl"><input type="checkbox" id="chkSentences" checked> Povedi</label>
+            </div>
           </div>
         </div>
 
-        <!-- Audio Button -->
-        <div class="audio-controls">
-          <button class="btn-audio" id="audioBtn" title="Poslušaj izgovorjavo" disabled>
-            🔊 Poslušaj
-          </button>
+      </div>
+    </div>
+
+    <!-- ═══ SCORE HUD (quiz only) — includes rank legend as tooltip ═══ -->
+    <div id="scoreHUD" class="score-hud" style="display:none"></div>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <div class="main-content">
+      <div class="card-section">
+
+        <!-- FLASHCARD PANEL -->
+        <div id="flashcardPanel" class="card-panel">
+
+          <div class="card-counter" id="cardCounter">Kartica 0 od 0</div>
+
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressBar"></div>
+          </div>
+
+          <div class="direction-badge slo-to-eng" id="directionBadge">SLO → EN</div>
+
+          <div id="cardContainer" class="card-container">
+            <div class="card" id="flashcard">
+              <div class="card-face card-front" id="cardFront">
+                <span class="card-text">Izberi nabor in klikni ↻</span>
+                <span class="flip-hint">klikni za obrat</span>
+              </div>
+              <div class="card-face card-back" id="cardBack">
+                <span class="card-text">🙂</span>
+                <span class="flip-hint">klikni za obrat</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="audio-controls">
+            <button class="btn-audio" id="audioBtn" title="Poslušaj izgovorjavo" disabled>
+              🔊 Poslušaj
+            </button>
+          </div>
+
+          <div class="controls">
+            <button class="btn" id="prevBtn" disabled>⬅️ Prejšnja</button>
+            <button class="btn" id="nextBtn" disabled>Naslednja ➡️</button>
+          </div>
+
+          <div class="keyboard-hint">
+            💡 Puščice za navigacijo, presledek za obračanje &nbsp;·&nbsp; 👆 Povleci levo/desno na mobilnih napravah
+          </div>
+
         </div>
 
-        <div class="controls">
-          <button class="btn" id="prevBtn" disabled>⬅️ Prejšnja</button>
-          <button class="btn" id="nextBtn" disabled>Naslednja ➡️</button>
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="quiz-panel" style="display:none">
+          <div id="quizArea" class="quiz-area">
+            <div class="quiz-empty">Naloži nabor kartic in začni kviz! 🎯</div>
+          </div>
         </div>
 
-        <div class="keyboard-hint">
-          💡 Puščice za navigacijo, presledek za obračanje kartice
-          <br>👆 Povleci levo/desno za navigacijo na mobilnih napravah
-        </div>
       </div>
     </div>
   </div>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=10"></script>
+
+  <script>
+    // Filter dropdown toggle
+    document.getElementById('filterToggle').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('filterPanel').classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      document.getElementById('filterPanel').classList.remove('open');
+    });
+    document.getElementById('filterPanel').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    // Update filter button label
+    function updateFilterLabel() {
+      const w = document.getElementById('chkWords').checked;
+      const p = document.getElementById('chkPhrases').checked;
+      const s = document.getElementById('chkSentences').checked;
+      const all = w && p && s;
+      const none = !w && !p && !s;
+      const parts = [];
+      if (w) parts.push('B');
+      if (p) parts.push('BZ');
+      if (s) parts.push('P');
+      document.getElementById('filterToggle').textContent = all ? '⚙ Vse ▾' : none ? '⚙ Nič ▾' : '⚙ ' + parts.join('+') + ' ▾';
+    }
+    ['chkWords','chkPhrases','chkSentences'].forEach(id => {
+      document.getElementById(id).addEventListener('change', updateFilterLabel);
+    });
+
+    // Mode select wires to the mode switching in script.js
+    document.getElementById('modeSelect').addEventListener('change', function() {
+      switchMode(this.value);
+    });
+  </script>
 </body>
 </html>
- 
