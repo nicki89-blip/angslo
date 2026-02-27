@@ -233,14 +233,9 @@ const SoundFX = (() => {
   }
 
   function correct() {
-    // Cheerful ascending chime: C5 → E5 → G5
-    const ac = getCtx();
-    const notes = [523, 659, 784];
-    notes.forEach((freq, i) => {
-      setTimeout(() => playTone({ freq, freqEnd: freq, type: 'sine', dur: 0.22, vol: 0.28 }), i * 110);
-    });
-    // Soft shimmer on top
-    setTimeout(() => playTone({ freq: 1047, freqEnd: 1200, type: 'sine', dur: 0.35, vol: 0.1 }), 280);
+    // Soft, modern, quick ascending bubble/ding
+    playTone({ freq: 800, freqEnd: 1000, type: 'sine', dur: 0.1, vol: 0.3 });
+    setTimeout(() => playTone({ freq: 1200, freqEnd: 1600, type: 'sine', dur: 0.2, vol: 0.2 }), 80);
   }
 
   function wrong() {
