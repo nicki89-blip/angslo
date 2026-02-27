@@ -1,13 +1,20 @@
+// 📗 Seznam predmetov
+const SUBJECTS = [
+  { id: "anglescina", name: "🇬🇧 Angleščina" },
+  { id: "druzba",     name: "🌍 Družba" },
+];
+
 // 📗 Seznam naborov
 const DATASETS = [
-  { id: "all",      name: "Vse besede",                                   url: "english_words.json" },
-  { id: "combined", name: "Vse enote skupaj (Unit 1 + Unit 2)",  url: null, combined: ["unit1.json","unit2.json"] },
-  { id: "unit1",   name: "Unit 1",                                        url: "unit1.json" },
-  { id: "unit2",   name: "Unit 2",                                        url: "unit2.json" },
-  { id: "unit3",   name: "Unit 3",                                        url: "unit3.json" }
+  { id: "all",      subject: "anglescina", name: "Vse besede",                      url: "english_words.json" },
+  { id: "combined", subject: "anglescina", name: "Vse enote skupaj (Unit 1 + Unit 2)", url: null, combined: ["unit1.json","unit2.json"] },
+  { id: "unit1",    subject: "anglescina", name: "Unit 1",                          url: "unit1.json" },
+  { id: "unit2",    subject: "anglescina", name: "Unit 2",                          url: "unit2.json" },
 ];
-const SELECT_KEY = "anki_dataset_id";
-const SCORE_KEY  = "anki_quiz_score";
+const SELECT_KEY  = "anki_dataset_id";
+const SUBJECT_KEY = "anki_subject_id";
+const SCORE_KEY   = "anki_quiz_score";
+let currentSubject = localStorage.getItem(SUBJECT_KEY) || "anglescina";
 let MASTER_DATA  = [];
 let currentMode  = "flashcard";
 
@@ -110,21 +117,41 @@ function getMedalSVG(rankName, size) {
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
+function buildSubjectSelect() {
+  const sel = document.getElementById("subject");
+  if (!sel) return;
+  sel.innerHTML = "";
+  SUBJECTS.forEach(s => {
+    const opt = document.createElement("option");
+    opt.value = s.id; opt.textContent = s.name;
+    sel.appendChild(opt);
+  });
+  sel.value = currentSubject;
+}
+
 function buildDatasetSelect() {
   const sel = document.getElementById("dataset");
   sel.innerHTML = "";
-  DATASETS.forEach(ds => {
+  const filtered = DATASETS.filter(d => d.subject === currentSubject);
+  if (filtered.length === 0) {
+    const opt = document.createElement("option");
+    opt.value = "__none__"; opt.textContent = "— ni naborov —";
+    sel.appendChild(opt);
+    return;
+  }
+  filtered.forEach(ds => {
     const opt = document.createElement("option");
     opt.value = ds.id; opt.textContent = ds.name;
     sel.appendChild(opt);
   });
   const saved = localStorage.getItem(SELECT_KEY);
-  if (saved && DATASETS.find(d => d.id === saved)) sel.value = saved;
+  if (saved && filtered.find(d => d.id === saved)) sel.value = saved;
 }
 
 function currentDataset() {
   const id = document.getElementById("dataset").value;
-  return DATASETS.find(d => d.id === id) || DATASETS[0];
+  const filtered = DATASETS.filter(d => d.subject === currentSubject);
+  return filtered.find(d => d.id === id) || filtered[0] || null;
 }
 
 function shuffle(arr) {
@@ -637,8 +664,29 @@ function reinitQuizApp() {
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
+buildSubjectSelect();
 buildDatasetSelect();
 const reloadBtn = document.getElementById("reloadBtn");
+
+// Subject change
+document.getElementById("subject").addEventListener("change", function() {
+  currentSubject = this.value;
+  localStorage.setItem(SUBJECT_KEY, currentSubject);
+  buildDatasetSelect();
+  // Reset cards
+  MASTER_DATA = [];
+  if (window.app)     { window.app.destroy();    window.app     = null; }
+  if (window.quizApp) { window.quizApp.destroy(); window.quizApp = null; }
+  clearDomListeners();
+  const ds = currentDataset();
+  if (!ds) {
+    setFaceText(document.getElementById('cardFront'), "Ta predmet še nima naborov 📚");
+    setFaceText(document.getElementById('cardBack'),  "Kmalu prihaja!");
+    ['prevBtn','nextBtn','audioBtn'].forEach(id => { const b = document.getElementById(id); if(b) b.disabled = true; });
+    return;
+  }
+  reloadBtn.click();
+});
 
 function clearDomListeners() {
   ['prevBtn','nextBtn','audioBtn','flashcard'].forEach(id => {
@@ -662,6 +710,7 @@ function reinitApp() {
 
 reloadBtn.addEventListener("click", async () => {
   const ds = currentDataset();
+  if (!ds) return;
   localStorage.setItem(SELECT_KEY, ds.id);
   if (window.app)     { window.app.destroy();     window.app     = null; }
   if (window.quizApp) { window.quizApp.destroy();  window.quizApp = null; }
