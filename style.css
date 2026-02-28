@@ -30,39 +30,105 @@ html { height: 100%; }
 /* ═══════════════════════════════════════
    COMPACT TOOLBAR
 ═══════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   TOOLBAR  (collapsible)
+═══════════════════════════════════════ */
 .toolbar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   background: rgba(0,0,0,0.3);
   backdrop-filter: blur(14px);
   border-radius: 16px;
-  padding: 8px 14px;
   margin-bottom: 10px;
-  flex-wrap: wrap;
   border: 1px solid rgba(255,255,255,0.1);
   position: relative;
   z-index: 200;
+  overflow: hidden;
+  transition: border-radius 0.25s;
 }
+
+/* ── Always-visible top row ── */
+.toolbar-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px 8px 14px;
+  min-height: 48px;
+}
+
+/* ── Collapsible controls wrap ── */
+.toolbar-controls-wrap {
+  max-height: 400px;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1),
+              padding 0.3s ease,
+              opacity 0.25s ease;
+  padding: 0 10px 10px;
+  opacity: 1;
+}
+.toolbar.collapsed .toolbar-controls-wrap {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Summary (shown when collapsed) ── */
+.toolbar-summary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  min-width: 0;
+}
+.toolbar-summary span { overflow: hidden; text-overflow: ellipsis; }
+.toolbar.collapsed .toolbar-summary { opacity: 1; }
+.summary-sep { color: rgba(255,255,255,0.25); flex-shrink: 0; }
+#summaryMode { color: #ffe066; flex-shrink: 0; }
+#summaryDataset { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+#summaryFilter { color: rgba(255,255,255,0.5); flex-shrink: 0; }
+
+/* ── Toggle button ── */
+.toolbar-toggle-btn {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  border: none; border-radius: 10px;
+  background: rgba(255,255,255,0.15);
+  color: #fff; cursor: pointer;
+  font-size: 1rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.toolbar-toggle-btn:hover { background: rgba(255,255,255,0.28); }
+.toolbar.collapsed .toolbar-toggle-btn { background: rgba(255,255,255,0.1); }
+
 
 .brand {
   font-family: 'Oswald', sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: 0.04em;
   white-space: nowrap;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-  margin-right: 4px;
+  flex-shrink: 0;
 }
 .brand span { color: #ffe066; }
 
 .toolbar-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
   flex: 1;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 .ctrl-group {

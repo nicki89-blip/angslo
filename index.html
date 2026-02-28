@@ -9,49 +9,63 @@
 <body>
   <div class="container">
 
-    <!-- ═══ COMPACT TOOLBAR ═══ -->
-    <div class="toolbar">
+    <!-- ═══ TOOLBAR ═══ -->
+    <div class="toolbar" id="toolbar">
 
-      <div class="brand">🦉 <span>Učko</span></div>
-
-      <div class="toolbar-controls">
-
-        <!-- Subject -->
-        <div class="ctrl-group">
-          <label class="ctrl-label" for="subject">Predmet</label>
-          <select id="subject" class="select" title="Izberi predmet"></select>
+      <!-- Always-visible top row -->
+      <div class="toolbar-top">
+        <div class="brand">🦉 <span>Učko</span></div>
+        <div class="toolbar-summary" id="toolbarSummary">
+          <span id="summaryDataset">—</span>
+          <span class="summary-sep">·</span>
+          <span id="summaryMode">—</span>
+          <span class="summary-sep">·</span>
+          <span id="summaryFilter">—</span>
         </div>
+        <button class="toolbar-toggle-btn" id="toolbarToggle" title="Nastavitve">⚙️</button>
+      </div>
 
-        <!-- Dataset -->
-        <div class="ctrl-group">
-          <label class="ctrl-label" for="dataset">Nabor</label>
-          <select id="dataset" class="select" title="Izberi nabor kartic"></select>
-          <button id="reloadBtn" class="reload-btn" title="Naloži">↻</button>
-        </div>
+      <!-- Collapsible controls -->
+      <div class="toolbar-controls-wrap" id="toolbarControlsWrap">
+        <div class="toolbar-controls">
 
-        <!-- Mode -->
-        <div class="ctrl-group">
-          <label class="ctrl-label" for="modeSelect">Način</label>
-          <select id="modeSelect" class="select">
-            <option value="flashcard">🃏 Kartice</option>
-            <option value="quiz">🎯 Kviz</option>
-            <option value="timed">⏱️ Tekma s časom</option>
-          </select>
-        </div>
+          <!-- Subject -->
+          <div class="ctrl-group">
+            <label class="ctrl-label" for="subject">Predmet</label>
+            <select id="subject" class="select" title="Izberi predmet"></select>
+          </div>
 
-        <!-- Filters -->
-        <div class="ctrl-group">
-          <label class="ctrl-label">Filter</label>
-          <div class="filter-dropdown">
-            <button class="filter-btn" id="filterToggle">⚙ Besede ▾</button>
-            <div class="filter-panel" id="filterPanel">
-              <label class="toggle-lbl"><input type="checkbox" id="chkWords" checked> Besede</label>
-              <label class="toggle-lbl"><input type="checkbox" id="chkPhrases" checked> Besedne zveze</label>
-              <label class="toggle-lbl"><input type="checkbox" id="chkSentences" checked> Povedi</label>
+          <!-- Dataset -->
+          <div class="ctrl-group">
+            <label class="ctrl-label" for="dataset">Nabor</label>
+            <select id="dataset" class="select" title="Izberi nabor kartic"></select>
+            <button id="reloadBtn" class="reload-btn" title="Naloži">↻</button>
+          </div>
+
+          <!-- Mode -->
+          <div class="ctrl-group">
+            <label class="ctrl-label" for="modeSelect">Način</label>
+            <select id="modeSelect" class="select">
+              <option value="flashcard">🃏 Kartice</option>
+              <option value="quiz">🎯 Kviz</option>
+              <option value="timed">⏱️ Tekma s časom</option>
+            </select>
+          </div>
+
+          <!-- Filters -->
+          <div class="ctrl-group">
+            <label class="ctrl-label">Filter</label>
+            <div class="filter-dropdown">
+              <button class="filter-btn" id="filterToggle">⚙ Besede ▾</button>
+              <div class="filter-panel" id="filterPanel">
+                <label class="toggle-lbl"><input type="checkbox" id="chkWords" checked> Besede</label>
+                <label class="toggle-lbl"><input type="checkbox" id="chkPhrases" checked> Besedne zveze</label>
+                <label class="toggle-lbl"><input type="checkbox" id="chkSentences" checked> Povedi</label>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
 
@@ -121,10 +135,62 @@
     </div>
   </div>
 
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=11"></script>
 
   <script>
-    // Filter dropdown toggle
+    /* ── Toolbar collapse ── */
+    const toolbar     = document.getElementById('toolbar');
+    const toggleBtn   = document.getElementById('toolbarToggle');
+    const controlsWrap = document.getElementById('toolbarControlsWrap');
+
+    function collapseToolbar() {
+      toolbar.classList.add('collapsed');
+      toggleBtn.textContent = '⚙️';
+    }
+    function expandToolbar() {
+      toolbar.classList.remove('collapsed');
+      toggleBtn.textContent = '✕';
+    }
+    function isCollapsed() { return toolbar.classList.contains('collapsed'); }
+
+    toggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      isCollapsed() ? expandToolbar() : collapseToolbar();
+      // also close filter panel
+      document.getElementById('filterPanel').classList.remove('open');
+    });
+
+    // Tap anywhere outside toolbar to collapse
+    document.addEventListener('click', function(e) {
+      if (!toolbar.contains(e.target) && !isCollapsed()) {
+        collapseToolbar();
+      }
+    });
+
+    /* ── Summary text updater ── */
+    function updateSummary() {
+      const datasetSel = document.getElementById('dataset');
+      const modeSel    = document.getElementById('modeSelect');
+      const w = document.getElementById('chkWords').checked;
+      const p = document.getElementById('chkPhrases').checked;
+      const s = document.getElementById('chkSentences').checked;
+
+      const datasetText = datasetSel.options[datasetSel.selectedIndex]?.text || '—';
+      // strip emoji from dataset name for brevity
+      document.getElementById('summaryDataset').textContent = datasetText.replace(/^[^\w]*/, '');
+
+      const modeMap = { flashcard: '🃏 Kartice', quiz: '🎯 Kviz', timed: '⏱️ Tekma' };
+      document.getElementById('summaryMode').textContent = modeMap[modeSel.value] || modeSel.value;
+
+      const all = w && p && s;
+      const none = !w && !p && !s;
+      const parts = [];
+      if (w) parts.push('B'); if (p) parts.push('BZ'); if (s) parts.push('P');
+      document.getElementById('summaryFilter').textContent =
+        all ? 'Vse' : none ? 'Nič' : parts.join('+');
+    }
+
+    /* ── Filter dropdown toggle ── */
     document.getElementById('filterToggle').addEventListener('click', function(e) {
       e.stopPropagation();
       document.getElementById('filterPanel').classList.toggle('open');
@@ -136,7 +202,7 @@
       e.stopPropagation();
     });
 
-    // Update filter button label
+    /* ── Filter button label ── */
     function updateFilterLabel() {
       const w = document.getElementById('chkWords').checked;
       const p = document.getElementById('chkPhrases').checked;
@@ -148,15 +214,31 @@
       if (p) parts.push('BZ');
       if (s) parts.push('P');
       document.getElementById('filterToggle').textContent = all ? '⚙ Vse ▾' : none ? '⚙ Nič ▾' : '⚙ ' + parts.join('+') + ' ▾';
+      updateSummary();
     }
     ['chkWords','chkPhrases','chkSentences'].forEach(id => {
       document.getElementById(id).addEventListener('change', updateFilterLabel);
     });
 
-    // Mode select wires to the mode switching in script.js
+    /* ── Mode select ── */
     document.getElementById('modeSelect').addEventListener('change', function() {
       switchMode(this.value);
+      updateSummary();
+      setTimeout(collapseToolbar, 200);
     });
+
+    /* ── Dataset change updates summary ── */
+    document.getElementById('dataset').addEventListener('change', updateSummary);
+    document.getElementById('subject').addEventListener('change', updateSummary);
+
+    /* ── Collapse after reload ── */
+    document.getElementById('reloadBtn').addEventListener('click', function() {
+      updateSummary();
+      setTimeout(collapseToolbar, 600);
+    }, true); // capture so it fires before reloadBtn's own listener
+
+    // Initial summary
+    updateSummary();
   </script>
 </body>
 </html>

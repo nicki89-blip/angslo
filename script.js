@@ -1162,6 +1162,8 @@ reloadBtn.addEventListener("click", async () => {
     } else if (currentMode === 'timed') {
       reinitTimedApp();
     }
+    // Collapse toolbar once the game is running
+    if (typeof collapseToolbar === 'function') collapseToolbar();
   } catch (err) {
     console.error(err);
     setFaceText(document.getElementById('cardFront'), "Napaka pri nalaganju kartic 😢");
