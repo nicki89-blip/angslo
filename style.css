@@ -745,6 +745,16 @@ html { height: 100%; }
   font-size: 1.9rem; font-weight: 700;
   color: #fff; line-height: 1; letter-spacing: 0.05em;
 }
+.timed-clock-ready {
+  opacity: 0.4;
+}
+.timed-clock-waiting {
+  font-size: 0.58rem; font-weight: 700;
+  color: #ffe066; letter-spacing: 0.05em;
+  text-transform: uppercase; line-height: 1;
+  margin-top: 3px;
+  animation: timerPulse 1.2s infinite;
+}
 
 /* ── Score + Progress ── */
 .timed-score-row {

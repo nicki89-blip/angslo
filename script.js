@@ -682,13 +682,14 @@ class TimedApp {
     if (this.timer) clearInterval(this.timer);
     if (this._autoTimer) clearTimeout(this._autoTimer);
     this.removeOverlay();
-    this.timeLeft = this.level.timeLimit;
-    this.score    = 0;
-    this.streak   = 0;
-    this.index    = 0;
-    this.cards    = shuffle([...this.allCards]);
-    this.answered = false;
-    this.timer = setInterval(() => this.tick(), 1000);
+    this.timeLeft     = this.level.timeLimit;
+    this.score        = 0;
+    this.streak       = 0;
+    this.index        = 0;
+    this.timerStarted = false;
+    this.cards        = shuffle([...this.allCards]);
+    this.answered     = false;
+    this.timer        = null;
     this.render();
   }
 
@@ -775,6 +776,12 @@ class TimedApp {
     const timeM   = Math.floor(this.timeLeft / 60);
     const timeS   = this.timeLeft % 60;
     const clockCls = this.timeLeft <= 10 ? 'timed-clock danger' : this.timeLeft <= 25 ? 'timed-clock warn' : 'timed-clock';
+    const clockContent = this.timerStarted
+      ? `<div class="timed-clock-label">Čas</div>
+         <div class="timed-clock-time" id="timedClockTime">${timeM}:${String(timeS).padStart(2,'0')}</div>`
+      : `<div class="timed-clock-label">Čas</div>
+         <div class="timed-clock-time timed-clock-ready" id="timedClockTime">${timeM}:${String(timeS).padStart(2,'0')}</div>
+         <div class="timed-clock-waiting">odgovori za start</div>`;
     const pct     = Math.min(100, Math.round((this.score / this.level.target) * 100));
     const streakHTML = this.streak >= 2
       ? `<span class="timed-streak" id="timedStreakDisplay">🔥 ${this.streak}× ${mult > 1 ? `<strong>×${mult}</strong>` : ''}</span>`
@@ -793,8 +800,7 @@ class TimedApp {
           </div>
         </div>
         <div class="${clockCls}" id="timedClock">
-          <div class="timed-clock-label">Čas</div>
-          <div class="timed-clock-time" id="timedClockTime">${timeM}:${String(timeS).padStart(2,'0')}</div>
+          ${clockContent}
         </div>
       </div>
 
@@ -857,6 +863,12 @@ class TimedApp {
     const correct   = btn.dataset.correct;
     const isCorrect = selected === correct;
     const mult      = getMultiplier(this.streak);
+
+    // Start the countdown on the very first answer
+    if (!this.timerStarted) {
+      this.timerStarted = true;
+      this.timer = setInterval(() => this.tick(), 1000);
+    }
 
     document.querySelectorAll('#timedOptions .quiz-option').forEach(b => {
       b.disabled = true;
