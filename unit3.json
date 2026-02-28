@@ -658,5 +658,81 @@
   {
     "question": "Ravnati z",
     "answer": "To treat"
+  },
+  {
+    "question": "What does a mouse eat?",
+    "answer": "It eats cheese."
+  },
+  {
+    "question": "Where can I see a camel?",
+    "answer": "In a zoo."
+  },
+  {
+    "question": "What is a lion like?",
+    "answer": "It's big and dangerous."
+  },
+  {
+    "question": "Can a monkey climb trees?",
+    "answer": "Yes, of course. It can climb trees very well."
+  },
+  {
+    "question": "How can you take care of your cat?",
+    "answer": "I feed it and I clean its litterbox."
+  },
+  {
+    "question": "Has a hippo got a trunk?",
+    "answer": "No, it hasn't. An elephant has got one."
+  },
+  {
+    "question": "Can I feed the tiger?",
+    "answer": "No, you can't. It's too dangerous."
+  },
+  {
+    "question": "What can a whale do?",
+    "answer": "It can swim."
+  },
+  {
+    "question": "Can you help me, please?",
+    "answer": "Yes, of course. What's the matter?"
+  },
+  {
+    "question": "Dolg",
+    "answer": "Long"
+  },
+  {
+    "question": "Lep / Prijeten",
+    "answer": "Nice"
+  },
+  {
+    "question": "Telo",
+    "answer": "Body"
+  },
+  {
+    "question": "Noge",
+    "answer": "Legs"
+  },
+  {
+    "question": "Zobje",
+    "answer": "Teeth"
+  },
+  {
+    "question": "Kremplji",
+    "answer": "Claws"
+  },
+  {
+    "question": "Ušesa",
+    "answer": "Ears"
+  },
+  {
+    "question": "Hoditi",
+    "answer": "To walk"
+  },
+  {
+    "question": "Zbirati hrano",
+    "answer": "To collect food"
+  },
+  {
+    "question": "Peti",
+    "answer": "To sing"
   }
 ]
