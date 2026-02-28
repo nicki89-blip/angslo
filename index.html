@@ -35,6 +35,7 @@
           <select id="modeSelect" class="select">
             <option value="flashcard">🃏 Kartice</option>
             <option value="quiz">🎯 Kviz</option>
+            <option value="timed">⏱️ Tekma s časom</option>
           </select>
         </div>
 
@@ -72,6 +73,93 @@
 
           <div class="direction-badge slo-to-eng" id="directionBadge">SLO → EN</div>
 
+          <div id="cardContainer" class="card-container">
+            <div class="card" id="flashcard">
+              <div class="card-face card-front" id="cardFront">
+                <span class="card-text">Izberi nabor in klikni ↻</span>
+                <span class="flip-hint">klikni za obrat</span>
+              </div>
+              <div class="card-face card-back" id="cardBack">
+                <span class="card-text">🙂</span>
+                <span class="flip-hint">klikni za obrat</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="audio-controls">
+            <button class="btn-audio" id="audioBtn" title="Poslušaj izgovorjavo" disabled>
+              🔊 Poslušaj
+            </button>
+          </div>
+
+          <div class="controls">
+            <button class="btn" id="prevBtn" disabled>⬅️ Prejšnja</button>
+            <button class="btn" id="nextBtn" disabled>Naslednja ➡️</button>
+          </div>
+
+          <div class="keyboard-hint">
+            💡 Puščice za navigacijo, presledek za obračanje &nbsp;·&nbsp; 👆 Povleci levo/desno na mobilnih napravah
+          </div>
+
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="quiz-panel" style="display:none">
+          <div id="quizArea" class="quiz-area">
+            <div class="quiz-empty">Naloži nabor kartic in začni kviz! 🎯</div>
+          </div>
+        </div>
+
+        <!-- TIMED PANEL -->
+        <div id="timedPanel" class="timed-panel" style="display:none">
+          <div id="timedArea" class="timed-area">
+            <div class="quiz-empty">Naloži nabor kartic in začni tekmo! ⏱️</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=10"></script>
+
+  <script>
+    // Filter dropdown toggle
+    document.getElementById('filterToggle').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('filterPanel').classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      document.getElementById('filterPanel').classList.remove('open');
+    });
+    document.getElementById('filterPanel').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    // Update filter button label
+    function updateFilterLabel() {
+      const w = document.getElementById('chkWords').checked;
+      const p = document.getElementById('chkPhrases').checked;
+      const s = document.getElementById('chkSentences').checked;
+      const all = w && p && s;
+      const none = !w && !p && !s;
+      const parts = [];
+      if (w) parts.push('B');
+      if (p) parts.push('BZ');
+      if (s) parts.push('P');
+      document.getElementById('filterToggle').textContent = all ? '⚙ Vse ▾' : none ? '⚙ Nič ▾' : '⚙ ' + parts.join('+') + ' ▾';
+    }
+    ['chkWords','chkPhrases','chkSentences'].forEach(id => {
+      document.getElementById(id).addEventListener('change', updateFilterLabel);
+    });
+
+    // Mode select wires to the mode switching in script.js
+    document.getElementById('modeSelect').addEventListener('change', function() {
+      switchMode(this.value);
+    });
+  </script>
+</body>
+</html>
           <div id="cardContainer" class="card-container">
             <div class="card" id="flashcard">
               <div class="card-face card-front" id="cardFront">
