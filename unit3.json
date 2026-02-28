@@ -494,5 +494,149 @@
   {
     "question": "Žirafe spijo stoje.",
     "answer": "Giraffes sleep on their feet."
+  },
+  {
+    "question": "tiho",
+    "answer": "quiet"
+  },
+  {
+    "question": "udomačen",
+    "answer": "tame"
+  },
+  {
+    "question": "čist",
+    "answer": "clean"
+  },
+  {
+    "question": "smešen",
+    "answer": "funny"
+  },
+  {
+    "question": "nevaren",
+    "answer": "dangerous"
+  },
+  {
+    "question": "močan",
+    "answer": "strong"
+  },
+  {
+    "question": "pogumen",
+    "answer": "brave"
+  },
+  {
+    "question": "len",
+    "answer": "lazy"
+  },
+  {
+    "question": "glasen",
+    "answer": "loud"
+  },
+  {
+    "question": "šibek",
+    "answer": "weak"
+  },
+  {
+    "question": "umazan",
+    "answer": "dirty"
+  },
+  {
+    "question": "dolgočasen",
+    "answer": "boring"
+  },
+  {
+    "question": "delaven",
+    "answer": "hardworking"
+  },
+  {
+    "question": "sramežljiv",
+    "answer": "shy"
+  },
+  {
+    "question": "Ovce ljudem dajejo volno.",
+    "answer": "Sheep give wool to people."
+  },
+  {
+    "question": "Race in kokoši ležejo jajca.",
+    "answer": "Ducks and hens lay eggs."
+  },
+  {
+    "question": "Purani, prašiči in zajci dajejo ljudem meso.",
+    "answer": "Turkeys, pigs and rabbits give people meat."
+  },
+  {
+    "question": "Krave in koze dajejo mleko.",
+    "answer": "Cows and goats give milk."
+  },
+  {
+    "question": "Mačke in psi delajo ljudem družbo.",
+    "answer": "Cats and dogs keep people company."
+  },
+  {
+    "question": "Psi čuvajo hišo.",
+    "answer": "Dogs guard the house."
+  },
+  {
+    "question": "gobček",
+    "answer": "snout"
+  },
+  {
+    "question": "morski pes",
+    "answer": "shark"
+  },
+  {
+    "question": "Kaj miš je?",
+    "answer": "It eats cheese."
+  },
+  {
+    "question": "Kje lahko vidim kamelo?",
+    "answer": "In a zoo."
+  },
+  {
+    "question": "Kakšen je lev?",
+    "answer": "It is big and dangerous."
+  },
+  {
+    "question": "Ali opica zna plezati po drevesih?",
+    "answer": "Yes, of course it can climb trees very well."
+  },
+  {
+    "question": "Kako skrbiš za svojo mačko?",
+    "answer": "I feed it and I clean its litterbox."
+  },
+  {
+    "question": "Ali ima povodni konj rilec?",
+    "answer": "No, it hasnt. An elephant has got one."
+  },
+  {
+    "question": "Ali lahko krmim tigra?",
+    "answer": "No, you cant. It is too dangerous."
+  },
+  {
+    "question": "Kaj zna kit narediti?",
+    "answer": "It can swim."
+  },
+  {
+    "question": "Ali mi lahko pomagaš?",
+    "answer": "Yes, of course. What is the matter?"
+  },
+  {
+    "question": "medved",
+    "answer": "bear"
+  },
+  {
+    "question": "piščanec",
+    "answer": "chicken"
+  },
+  {
+    "question": "koza",
+    "answer": "goat"
+  },
+  {
+    "question": "zajec",
+    "answer": "rabbit"
+  },
+  {
+    "question": "ovca",
+    "answer": "sheep"
   }
 ]
