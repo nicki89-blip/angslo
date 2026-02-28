@@ -193,7 +193,15 @@
     /* ── Filter dropdown toggle ── */
     document.getElementById('filterToggle').addEventListener('click', function(e) {
       e.stopPropagation();
-      document.getElementById('filterPanel').classList.toggle('open');
+      const panel = document.getElementById('filterPanel');
+      const isOpen = panel.classList.contains('open');
+      if (!isOpen) {
+        // Position panel below the button using fixed coords
+        const rect = this.getBoundingClientRect();
+        panel.style.top  = (rect.bottom + 6) + 'px';
+        panel.style.left = rect.left + 'px';
+      }
+      panel.classList.toggle('open');
     });
     document.addEventListener('click', function() {
       document.getElementById('filterPanel').classList.remove('open');

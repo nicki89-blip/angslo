@@ -41,8 +41,6 @@ html { height: 100%; }
   border: 1px solid rgba(255,255,255,0.1);
   position: relative;
   z-index: 200;
-  overflow: hidden;
-  transition: border-radius 0.25s;
 }
 
 /* ── Always-visible top row ── */
@@ -199,10 +197,8 @@ html { height: 100%; }
 
 .filter-panel {
   display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  z-index: 999;
+  position: fixed;
+  z-index: 9000;
   background: rgba(20,10,50,0.96);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255,255,255,0.15);
