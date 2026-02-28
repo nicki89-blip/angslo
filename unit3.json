@@ -328,7 +328,7 @@
     "answer": "Quiet"
   },
   {
-    "question": "Sramožljiv",
+    "question": "Sramežljiv",
     "answer": "Shy"
   },
   {
@@ -496,147 +496,167 @@
     "answer": "Giraffes sleep on their feet."
   },
   {
-    "question": "tiho",
-    "answer": "quiet"
+    "question": "Kamela",
+    "answer": "Camel"
   },
   {
-    "question": "udomačen",
-    "answer": "tame"
+    "question": "Muha",
+    "answer": "Fly"
   },
   {
-    "question": "čist",
-    "answer": "clean"
+    "question": "Komar",
+    "answer": "Mosquito"
   },
   {
-    "question": "smešen",
-    "answer": "funny"
+    "question": "Sova",
+    "answer": "Owl"
   },
   {
-    "question": "nevaren",
-    "answer": "dangerous"
+    "question": "Panter",
+    "answer": "Panther"
   },
   {
-    "question": "močan",
-    "answer": "strong"
+    "question": "Pav",
+    "answer": "Peacock"
   },
   {
-    "question": "pogumen",
-    "answer": "brave"
+    "question": "Piranha",
+    "answer": "Piranha"
   },
   {
-    "question": "len",
-    "answer": "lazy"
+    "question": "Morski pes",
+    "answer": "Shark"
   },
   {
-    "question": "glasen",
-    "answer": "loud"
+    "question": "Polž",
+    "answer": "Snail"
   },
   {
-    "question": "šibek",
-    "answer": "weak"
+    "question": "Kosti",
+    "answer": "Bones"
   },
   {
-    "question": "umazan",
-    "answer": "dirty"
+    "question": "Sir",
+    "answer": "Cheese"
   },
   {
-    "question": "dolgočasen",
-    "answer": "boring"
+    "question": "Koruza",
+    "answer": "Corn"
   },
   {
-    "question": "delaven",
-    "answer": "hardworking"
+    "question": "Zrnje",
+    "answer": "Grain"
   },
   {
-    "question": "sramežljiv",
-    "answer": "shy"
+    "question": "Seno",
+    "answer": "Hay"
   },
   {
-    "question": "Ovce ljudem dajejo volno.",
-    "answer": "Sheep give wool to people."
+    "question": "Listje",
+    "answer": "Leaves"
   },
   {
-    "question": "Race in kokoši ležejo jajca.",
-    "answer": "Ducks and hens lay eggs."
+    "question": "Črvi",
+    "answer": "Worms"
   },
   {
-    "question": "Purani, prašiči in zajci dajejo ljudem meso.",
-    "answer": "Turkeys, pigs and rabbits give people meat."
+    "question": "Majhen",
+    "answer": "Small"
   },
   {
-    "question": "Krave in koze dajejo mleko.",
-    "answer": "Cows and goats give milk."
+    "question": "Črn",
+    "answer": "Black"
   },
   {
-    "question": "Mačke in psi delajo ljudem družbo.",
-    "answer": "Cats and dogs keep people company."
+    "question": "Bel",
+    "answer": "White"
   },
   {
-    "question": "Psi čuvajo hišo.",
-    "answer": "Dogs guard the house."
+    "question": "Umazan",
+    "answer": "Dirty"
   },
   {
-    "question": "gobček",
-    "answer": "snout"
+    "question": "Čist",
+    "answer": "Clean"
   },
   {
-    "question": "morski pes",
-    "answer": "shark"
+    "question": "Počasen",
+    "answer": "Slow"
   },
   {
-    "question": "Kaj miš je?",
-    "answer": "It eats cheese."
+    "question": "Debel",
+    "answer": "Fat"
   },
   {
-    "question": "Kje lahko vidim kamelo?",
-    "answer": "In a zoo."
+    "question": "Vitek",
+    "answer": "Slim"
   },
   {
-    "question": "Kakšen je lev?",
-    "answer": "It is big and dangerous."
+    "question": "Resen",
+    "answer": "Serious"
   },
   {
-    "question": "Ali opica zna plezati po drevesih?",
-    "answer": "Yes, of course it can climb trees very well."
+    "question": "Nizek",
+    "answer": "Short"
   },
   {
-    "question": "Kako skrbiš za svojo mačko?",
-    "answer": "I feed it and I clean its litterbox."
+    "question": "Loviti",
+    "answer": "To catch"
   },
   {
-    "question": "Ali ima povodni konj rilec?",
-    "answer": "No, it hasnt. An elephant has got one."
+    "question": "Čistiti",
+    "answer": "To clean"
   },
   {
-    "question": "Ali lahko krmim tigra?",
-    "answer": "No, you cant. It is too dangerous."
+    "question": "Plezati",
+    "answer": "To climb"
   },
   {
-    "question": "Kaj zna kit narediti?",
-    "answer": "It can swim."
+    "question": "Zbirati",
+    "answer": "To collect"
   },
   {
-    "question": "Ali mi lahko pomagaš?",
-    "answer": "Yes, of course. What is the matter?"
+    "question": "Kopati",
+    "answer": "To dig"
   },
   {
-    "question": "medved",
-    "answer": "bear"
+    "question": "Leteti",
+    "answer": "To fly"
   },
   {
-    "question": "piščanec",
-    "answer": "chicken"
+    "question": "Dati",
+    "answer": "To give"
   },
   {
-    "question": "koza",
-    "answer": "goat"
+    "question": "Skakati",
+    "answer": "To jump"
   },
   {
-    "question": "zajec",
-    "answer": "rabbit"
+    "question": "Skrbeti za",
+    "answer": "To keep"
   },
   {
-    "question": "ovca",
-    "answer": "sheep"
+    "question": "Znesati",
+    "answer": "To lay"
+  },
+  {
+    "question": "Teči",
+    "answer": "To run"
+  },
+  {
+    "question": "Govoriti",
+    "answer": "To speak"
+  },
+  {
+    "question": "Plavati",
+    "answer": "To swim"
+  },
+  {
+    "question": "Vzeti",
+    "answer": "To take"
+  },
+  {
+    "question": "Ravnati z",
+    "answer": "To treat"
   }
 ]
