@@ -43,7 +43,7 @@ const TIMED_LEVELS = [
     hint: "Pridobi 290 točk v 2:30" },
 ];
 
-
+function getRank(score) {
   let rank = RANKS[0];
   for (const r of RANKS) { if (score >= r.minScore) rank = r; }
   return rank;
