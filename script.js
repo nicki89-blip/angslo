@@ -17,6 +17,7 @@ const SUBJECT_KEY = "anki_subject_id";
 const SCORE_KEY   = "anki_quiz_score";
 let currentSubject = localStorage.getItem(SUBJECT_KEY) || "anglescina";
 let MASTER_DATA  = [];
+let ALL_UNITS_POOL = [];   // pool of ALL items from every unit, for quiz distractors
 let currentMode  = "flashcard";
 
 // ── Ranks ─────────────────────────────────────────────────────────────────────
@@ -375,12 +376,22 @@ class QuizApp {
     }
   }
 
-  getWrongAnswers(correct) {
-    const pool = shuffle(
-      [...new Set(MASTER_DATA.map(item => item.answer ?? item.english ?? "")
-        .filter(a => a && a !== correct))]
-    );
-    return pool.slice(0, 3);
+  getWrongAnswers(correct, isSloToEng) {
+    // Determine category of the correct answer to match distractors to same type
+    const cat = getCategory(correct);
+
+    // Build distractor pool from ALL units (not just current dataset)
+    // Pick the same language side as the correct answer
+    const pool = ALL_UNITS_POOL.length > 0 ? ALL_UNITS_POOL : MASTER_DATA;
+    const candidates = [...new Set(
+      pool
+        .map(item => isSloToEng
+          ? (item.answer   ?? item.english   ?? "")
+          : (item.question ?? item.slovenian ?? ""))
+        .filter(a => a && a !== correct && getCategory(a) === cat)
+    )];
+
+    return shuffle(candidates).slice(0, 3);
   }
 
   render() {
@@ -395,7 +406,7 @@ class QuizApp {
 
     const card    = this.cards[this.index];
     const correct = card.back;
-    const wrongs  = this.getWrongAnswers(correct);
+    const wrongs  = this.getWrongAnswers(correct, card.isSloToEng);
     const options = shuffle([correct, ...wrongs]);
     const mult    = getMultiplier(this.streak);
 
@@ -664,6 +675,20 @@ function reinitQuizApp() {
   window.quizApp = new QuizApp(cards);
 }
 
+// ── Load full distractor pool from ALL unit files ────────────────────────────
+async function loadAllUnitsPool() {
+  const allUrls = ["unit1.json","unit2.json","unit3.json","english_words.json"];
+  const t = Date.now();
+  let combined = [];
+  for (const url of allUrls) {
+    try {
+      const resp = await fetch(url + '?t=' + t);
+      if (resp.ok) combined = combined.concat(await resp.json());
+    } catch(e) {}
+  }
+  ALL_UNITS_POOL = combined;
+}
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 buildSubjectSelect();
 buildDatasetSelect();
@@ -736,4 +761,4 @@ reloadBtn.addEventListener("click", async () => {
 });
 
 updateScoreHUD(parseInt(localStorage.getItem(SCORE_KEY) || '0'), 0);
-reloadBtn.click();
+loadAllUnitsPool().then(() => reloadBtn.click());
