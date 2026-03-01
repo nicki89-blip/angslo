@@ -6,11 +6,12 @@ const SUBJECTS = [
 
 // 📗 Seznam naborov
 const DATASETS = [
-  { id: "all",      subject: "anglescina", name: "Vse besede",                      url: "english_words.json" },
-  { id: "combined", subject: "anglescina", name: "Vse enote", url: null, combined: ["unit1.json","unit2.json","unit3.json"] },
-  { id: "unit1",    subject: "anglescina", name: "Unit 1",                          url: "unit1.json" },
-  { id: "unit2",    subject: "anglescina", name: "Unit 2",                          url: "unit2.json" },
-  { id: "unit3",    subject: "anglescina", name: "Unit 3",                          url: "unit3.json" },
+  { id: "all",      subject: "anglescina", name: "Vse besede",  url: "english_words.json" },
+  { id: "combined", subject: "anglescina", name: "Vse enote",   url: null, combined: ["unit1.json","unit2.json","unit3.json"] },
+  { id: "unit1",    subject: "anglescina", name: "Unit 1",      url: "unit1.json" },
+  { id: "unit2",    subject: "anglescina", name: "Unit 2",      url: "unit2.json" },
+  { id: "unit3",    subject: "anglescina", name: "Unit 3",      url: "unit3.json" },
+  { id: "dinarsko-obsredozemske", subject: "druzba", name: "Dinarskokraške in Obsredozemske pokrajine", url: "Dinarskokraške-Obsredozemske.json" },
 ];
 const SELECT_KEY  = "anki_dataset_id";
 const SUBJECT_KEY = "anki_subject_id";
@@ -1094,12 +1095,18 @@ function reinitTimedApp() {
 }
 
 
-// ── Load full distractor pool from ALL unit files ────────────────────────────
+// ── Load full distractor pool from ALL unit files for current subject ─────────
 async function loadAllUnitsPool() {
-  const allUrls = ["unit1.json","unit2.json","unit3.json","english_words.json"];
+  // Build the pool from all datasets belonging to the current subject
+  const subjectDatasets = DATASETS.filter(d => d.subject === currentSubject);
+  const urlSet = new Set();
+  subjectDatasets.forEach(ds => {
+    if (ds.combined) ds.combined.forEach(u => urlSet.add(u));
+    else if (ds.url) urlSet.add(ds.url);
+  });
   const t = Date.now();
   let combined = [];
-  for (const url of allUrls) {
+  for (const url of urlSet) {
     try {
       const resp = await fetch(url + '?t=' + t);
       if (resp.ok) combined = combined.concat(await resp.json());
@@ -1120,6 +1127,7 @@ document.getElementById("subject").addEventListener("change", function() {
   buildDatasetSelect();
   // Reset cards
   MASTER_DATA = [];
+  ALL_UNITS_POOL = [];
   if (window.app)     { window.app.destroy();    window.app     = null; }
   if (window.quizApp) { window.quizApp.destroy(); window.quizApp = null; }
   clearDomListeners();
@@ -1130,7 +1138,7 @@ document.getElementById("subject").addEventListener("change", function() {
     ['prevBtn','nextBtn','audioBtn'].forEach(id => { const b = document.getElementById(id); if(b) b.disabled = true; });
     return;
   }
-  reloadBtn.click();
+  loadAllUnitsPool().then(() => reloadBtn.click());
 });
 
 function clearDomListeners() {
