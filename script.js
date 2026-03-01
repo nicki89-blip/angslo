@@ -11,7 +11,7 @@ const DATASETS = [
   { id: "unit1",    subject: "anglescina", name: "Unit 1",      url: "unit1.json" },
   { id: "unit2",    subject: "anglescina", name: "Unit 2",      url: "unit2.json" },
   { id: "unit3",    subject: "anglescina", name: "Unit 3",      url: "unit3.json" },
-  { id: "dinarsko-obsredozemske", subject: "druzba", name: "Dinarskokraške in Obsredozemske pokrajine", url: "Dinarskokraške-Obsredozemske.json" },
+  { id: "dinarsko-obsredozemske", subject: "druzba", name: "Dinarskokraške in Obsredozemske pokrajine", url: "dinarsko-obsredozemske.json" },
 ];
 const SELECT_KEY  = "anki_dataset_id";
 const SUBJECT_KEY = "anki_subject_id";
