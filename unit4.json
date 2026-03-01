@@ -1,0 +1,918 @@
+[
+  {
+    "question": "Dom",
+    "answer": "Home"
+  },
+  {
+    "question": "Kuhinja",
+    "answer": "Kitchen"
+  },
+  {
+    "question": "Kuhanje",
+    "answer": "Cooking"
+  },
+  {
+    "question": "Okusiti / Okus",
+    "answer": "Taste"
+  },
+  {
+    "question": "Jedi / Posoda",
+    "answer": "Dishes"
+  },
+  {
+    "question": "Krožnik",
+    "answer": "Plate"
+  },
+  {
+    "question": "Užitki",
+    "answer": "Pleasures"
+  },
+  {
+    "question": "Zakladi",
+    "answer": "Treasures"
+  },
+  {
+    "question": "Mleko",
+    "answer": "Milk"
+  },
+  {
+    "question": "Gazirana pijača",
+    "answer": "Fizzy drink"
+  },
+  {
+    "question": "Kava",
+    "answer": "Coffee"
+  },
+  {
+    "question": "Voda",
+    "answer": "Water"
+  },
+  {
+    "question": "Sok",
+    "answer": "Juice"
+  },
+  {
+    "question": "Čaj",
+    "answer": "Tea"
+  },
+  {
+    "question": "Mlečni napitek",
+    "answer": "Milkshake"
+  },
+  {
+    "question": "Kakav",
+    "answer": "Cocoa"
+  },
+  {
+    "question": "Jabolko",
+    "answer": "Apple"
+  },
+  {
+    "question": "Banana",
+    "answer": "Banana"
+  },
+  {
+    "question": "Pomaranča",
+    "answer": "Orange"
+  },
+  {
+    "question": "Ananas",
+    "answer": "Pineapple"
+  },
+  {
+    "question": "Hruška",
+    "answer": "Pear"
+  },
+  {
+    "question": "Breskev",
+    "answer": "Peach"
+  },
+  {
+    "question": "Jagode",
+    "answer": "Strawberries"
+  },
+  {
+    "question": "Grozdje",
+    "answer": "Grapes"
+  },
+  {
+    "question": "Maline",
+    "answer": "Raspberries"
+  },
+  {
+    "question": "Sliva",
+    "answer": "Plum"
+  },
+  {
+    "question": "Kivi",
+    "answer": "Kiwi"
+  },
+  {
+    "question": "Borovnice",
+    "answer": "Blueberries"
+  },
+  {
+    "question": "Mandarine",
+    "answer": "Tangerines"
+  },
+  {
+    "question": "Hrana",
+    "answer": "Food"
+  },
+  {
+    "question": "Majoneza",
+    "answer": "Mayonnaise"
+  },
+  {
+    "question": "Sir",
+    "answer": "Cheese"
+  },
+  {
+    "question": "Fižol",
+    "answer": "Beans"
+  },
+  {
+    "question": "Kruh",
+    "answer": "Bread"
+  },
+  {
+    "question": "Brokoli",
+    "answer": "Broccoli"
+  },
+  {
+    "question": "Maslo",
+    "answer": "Butter"
+  },
+  {
+    "question": "Korenček",
+    "answer": "Carrot"
+  },
+  {
+    "question": "Piščanec",
+    "answer": "Chicken"
+  },
+  {
+    "question": "Pomfri",
+    "answer": "Chips"
+  },
+  {
+    "question": "Kumara",
+    "answer": "Cucumber"
+  },
+  {
+    "question": "Jajca",
+    "answer": "Eggs"
+  },
+  {
+    "question": "Riba",
+    "answer": "Fish"
+  },
+  {
+    "question": "Hamburger",
+    "answer": "Hamburger"
+  },
+  {
+    "question": "Hrenovka v štručki",
+    "answer": "Hot dog"
+  },
+  {
+    "question": "Marmelada",
+    "answer": "Jam"
+  },
+  {
+    "question": "Zelena solata",
+    "answer": "Lettuce"
+  },
+  {
+    "question": "Meso",
+    "answer": "Meat"
+  },
+  {
+    "question": "Grah",
+    "answer": "Peas"
+  },
+  {
+    "question": "Pica",
+    "answer": "Pizza"
+  },
+  {
+    "question": "Krompir",
+    "answer": "Potato"
+  },
+  {
+    "question": "Salama",
+    "answer": "Salami"
+  },
+  {
+    "question": "Sendvič",
+    "answer": "Sandwich"
+  },
+  {
+    "question": "Juha",
+    "answer": "Soup"
+  },
+  {
+    "question": "Špageti",
+    "answer": "Spaghetti"
+  },
+  {
+    "question": "Paradižnik",
+    "answer": "Tomato"
+  },
+  {
+    "question": "Jogurt",
+    "answer": "Yoghurt"
+  },
+  {
+    "question": "Torta / Kolač",
+    "answer": "Cake"
+  },
+  {
+    "question": "Čokolada",
+    "answer": "Chocolate"
+  },
+  {
+    "question": "Piškoti",
+    "answer": "Cookies"
+  },
+  {
+    "question": "Krof",
+    "answer": "Doughnut"
+  },
+  {
+    "question": "Sladoled",
+    "answer": "Ice cream"
+  },
+  {
+    "question": "Mafin",
+    "answer": "Muffin"
+  },
+  {
+    "question": "Palačinka",
+    "answer": "Pancake"
+  },
+  {
+    "question": "Zavitek / Štrudelj",
+    "answer": "Strudel"
+  },
+  {
+    "question": "Sadje",
+    "answer": "Fruits"
+  },
+  {
+    "question": "Zelenjava",
+    "answer": "Vegetables"
+  },
+  {
+    "question": "Sladice",
+    "answer": "Desserts"
+  },
+  {
+    "question": "Skodelica",
+    "answer": "Cup"
+  },
+  {
+    "question": "Kozarec",
+    "answer": "Glass"
+  },
+  {
+    "question": "Žlica",
+    "answer": "Spoon"
+  },
+  {
+    "question": "Ponev",
+    "answer": "Pan"
+  },
+  {
+    "question": "Vilica",
+    "answer": "Fork"
+  },
+  {
+    "question": "Skleda",
+    "answer": "Bowl"
+  },
+  {
+    "question": "Čajna žlička",
+    "answer": "Teaspoon"
+  },
+  {
+    "question": "Nož",
+    "answer": "Knife"
+  },
+  {
+    "question": "Lonec",
+    "answer": "Pot"
+  },
+  {
+    "question": "Ponedeljek",
+    "answer": "Monday"
+  },
+  {
+    "question": "Torek",
+    "answer": "Tuesday"
+  },
+  {
+    "question": "Sreda",
+    "answer": "Wednesday"
+  },
+  {
+    "question": "Četrtek",
+    "answer": "Thursday"
+  },
+  {
+    "question": "Petek",
+    "answer": "Friday"
+  },
+  {
+    "question": "Sobota",
+    "answer": "Saturday"
+  },
+  {
+    "question": "Nedelja",
+    "answer": "Sunday"
+  },
+  {
+    "question": "Slasten",
+    "answer": "Delicious"
+  },
+  {
+    "question": "Najljubši",
+    "answer": "Favourite"
+  },
+  {
+    "question": "Svež",
+    "answer": "Fresh"
+  },
+  {
+    "question": "Ocvrt",
+    "answer": "Fried"
+  },
+  {
+    "question": "Zdrav",
+    "answer": "Healthy"
+  },
+  {
+    "question": "Grozen",
+    "answer": "Horrible"
+  },
+  {
+    "question": "Pomemben",
+    "answer": "Important"
+  },
+  {
+    "question": "Srečen",
+    "answer": "Lucky"
+  },
+  {
+    "question": "Izbirčen",
+    "answer": "Picky"
+  },
+  {
+    "question": "Kremast",
+    "answer": "Creamed"
+  },
+  {
+    "question": "Pečen na žaru",
+    "answer": "Barbecued"
+  },
+  {
+    "question": "Dodati",
+    "answer": "To add"
+  },
+  {
+    "question": "Kupiti",
+    "answer": "To buy"
+  },
+  {
+    "question": "Kuhati",
+    "answer": "To cook"
+  },
+  {
+    "question": "Narezati",
+    "answer": "To cut"
+  },
+  {
+    "question": "Delati",
+    "answer": "To do"
+  },
+  {
+    "question": "Sovražiti",
+    "answer": "To hate"
+  },
+  {
+    "question": "Imeti rad",
+    "answer": "To like"
+  },
+  {
+    "question": "Ljubiti / Imeti zelo rad",
+    "answer": "To love"
+  },
+  {
+    "question": "Narediti",
+    "answer": "To make"
+  },
+  {
+    "question": "Potrebovati",
+    "answer": "To need"
+  },
+  {
+    "question": "Olupiti",
+    "answer": "To peel"
+  },
+  {
+    "question": "Naliti",
+    "answer": "To pour"
+  },
+  {
+    "question": "Postaviti / Dati",
+    "answer": "To put"
+  },
+  {
+    "question": "Postreči",
+    "answer": "To serve"
+  },
+  {
+    "question": "Namazati",
+    "answer": "To spread"
+  },
+  {
+    "question": "Posuti",
+    "answer": "To sprinkle"
+  },
+  {
+    "question": "Vzeti",
+    "answer": "To take"
+  },
+  {
+    "question": "Oprati",
+    "answer": "To wash"
+  },
+  {
+    "question": "Dišati / Vohati",
+    "answer": "To smell"
+  },
+  {
+    "question": "Ustvariti",
+    "answer": "To create"
+  },
+  {
+    "question": "Okusiti",
+    "answer": "To taste"
+  },
+  {
+    "question": "Nareži jabolko.",
+    "answer": "Cut the apple."
+  },
+  {
+    "question": "Operi jabolko.",
+    "answer": "Wash the apple."
+  },
+  {
+    "question": "Postrezi hrano.",
+    "answer": "Serve the food."
+  },
+  {
+    "question": "Nalij mleko.",
+    "answer": "Pour milk."
+  },
+  {
+    "question": "Dodaj moko.",
+    "answer": "Add flour."
+  },
+  {
+    "question": "Olupi banano.",
+    "answer": "Peel the banana."
+  },
+  {
+    "question": "Namaži z medom.",
+    "answer": "Spread with honey."
+  },
+  {
+    "question": "Posuj s kokosovo moko.",
+    "answer": "Sprinkle coconut flour."
+  },
+  {
+    "question": "Okusi hrano.",
+    "answer": "Taste the food."
+  },
+  {
+    "question": "Segrej pečico.",
+    "answer": "Heat the oven."
+  },
+  {
+    "question": "Zajtrk je prvi obrok dneva.",
+    "answer": "Breakfast is the first meal of the day."
+  },
+  {
+    "question": "Zajtrk jemo zjutraj.",
+    "answer": "We have breakfast in the morning."
+  },
+  {
+    "question": "Kosilo je obrok, ki ga jemo sredi dneva ali zgodaj popoldne.",
+    "answer": "Lunch is the meal that we eat in the middle of the day or early in the afternoon."
+  },
+  {
+    "question": "Večerja je običajno zadnji obrok dneva.",
+    "answer": "Dinner is usually the last meal of the day."
+  },
+  {
+    "question": "Večerjo jemo zvečer.",
+    "answer": "We have dinner in the evening."
+  },
+  {
+    "question": "Tina ima rada pico in sladoled.",
+    "answer": "Tina likes pizza and ice cream."
+  },
+  {
+    "question": "Mama ima rada hrenovki v štručki in zeleno solato.",
+    "answer": "Mum likes hot dogs and lettuce."
+  },
+  {
+    "question": "Oče ima rad piščanca in ribo.",
+    "answer": "Dad likes chicken and fish."
+  },
+  {
+    "question": "Tinin brat ima rad meso in ananase.",
+    "answer": "Tina's brother likes meat and pineapples."
+  },
+  {
+    "question": "Babica ima rada juho in torto.",
+    "answer": "Granny likes soup and cake."
+  },
+  {
+    "question": "Pes ima rad vse.",
+    "answer": "The dog likes everything."
+  },
+  {
+    "question": "V torek imamo ribo in pomfri, paradižnike in sok.",
+    "answer": "On Tuesday we have fish and chips, tomatoes and juice."
+  },
+  {
+    "question": "V sredo imamo juho in palačinke.",
+    "answer": "On Wednesday we have soup and pancakes."
+  },
+  {
+    "question": "V četrtek imamo piščanca, kumare, krompir in torto.",
+    "answer": "On Thursday we have chicken, cucumbers, potato and cake."
+  },
+  {
+    "question": "V petek imamo pico in jagode.",
+    "answer": "On Friday we have pizza and strawberries."
+  },
+  {
+    "question": "V soboto imamo kruh, ocvrti jajci, sir, salamo in zeleno solato.",
+    "answer": "On Saturday we have bread, fried eggs, cheese, salami and lettuce."
+  },
+  {
+    "question": "V nedeljo imamo meso, korenje, brokoli, fižol, krompir in zavitek.",
+    "answer": "On Sunday we have meat, carrots, broccoli, beans, potatoes and strudel."
+  },
+  {
+    "question": "Denis ima rad sok, ne mara pa kakava.",
+    "answer": "Denis likes juice, but he doesn't like cocoa."
+  },
+  {
+    "question": "Denis ima rad zeleno solato, ne mara pa pice.",
+    "answer": "Denis likes lettuce, but he doesn't like pizza."
+  },
+  {
+    "question": "Denis ima rad mleko, ne mara pa kave.",
+    "answer": "Denis likes milk, but he doesn't like coffee."
+  },
+  {
+    "question": "Denis ima rad ananas, ne mara pa pomfrija.",
+    "answer": "Denis likes pineapple, but he doesn't like chips."
+  },
+  {
+    "question": "Denis ima rad sladoled, ne mara pa tort.",
+    "answer": "Denis likes ice cream, but he doesn't like cakes."
+  },
+  {
+    "question": "Ali imaš rad sir?",
+    "answer": "Do you like cheese?"
+  },
+  {
+    "question": "Ali imaš rad hruške?",
+    "answer": "Do you like pears?"
+  },
+  {
+    "question": "Ali imaš rad juho?",
+    "answer": "Do you like soup?"
+  },
+  {
+    "question": "Ali imaš rad piščanca?",
+    "answer": "Do you like chicken?"
+  },
+  {
+    "question": "Ali imaš rad jajca?",
+    "answer": "Do you like eggs?"
+  },
+  {
+    "question": "Kaj je danes za večerjo? Imeli bomo juho, piščanca, pomfri in paradižnike.",
+    "answer": "What's for dinner today? We're having soup, chicken, chips and tomatoes."
+  },
+  {
+    "question": "Lahko dobim malo pomfrija, prosim? Ja, srček. Izvoli.",
+    "answer": "Can I have some chips, please? Yes, sweetie. Here you are."
+  },
+  {
+    "question": "Ali imaš rad sladoled? Ja, imam. Obožujem ga.",
+    "answer": "Do you like ice cream? Yes, I do. I love it."
+  },
+  {
+    "question": "Ali ima tvoj pes tudi rad sladoled? Ne, nima. Je samo meso.",
+    "answer": "Does your dog like ice cream, too? No, he doesn't. He only eats meat."
+  },
+  {
+    "question": "Kaj izdeluješ? Ne povem ti. To je presenečenje.",
+    "answer": "What are you making? I'm not telling you. It's a surprise."
+  },
+  {
+    "question": "Rad imam pomfri. Kaj imaš rad ti? Rad imam pico.",
+    "answer": "I like chips. What do you like? I like pizza."
+  },
+  {
+    "question": "Kaj starši pogosto rečejo? Pojej svoj zajtrk.",
+    "answer": "What do parents often say? Eat your breakfast."
+  },
+  {
+    "question": "Kdaj delaš domačo nalogo? Ko pridem domov iz šole.",
+    "answer": "When do you do your homework? When I come home from school."
+  },
+  {
+    "question": "Kdaj je tvoja rojstnodnevna zabava? V petek.",
+    "answer": "When's your birthday party? On Friday."
+  },
+  {
+    "question": "Ob kateri uri greš v šolo? Ob sedmih zjutraj.",
+    "answer": "What time do you go to school? At 7 o'clock in the morning."
+  },
+  {
+    "question": "Lahko dobim malo sladoleda, prosim?",
+    "answer": "Can I have some ice cream, please?"
+  },
+  {
+    "question": "Lačna lisica hodi skozi gozd. Nenadoma zagleda vrano.",
+    "answer": "A hungry fox is walking through the woods. Suddenly she sees a crow."
+  },
+  {
+    "question": "Vrana sedi na drevesu. V kljunu ima velik kos sira.",
+    "answer": "The crow is sitting in a tree. It has a very big piece of cheese in its beak."
+  },
+  {
+    "question": "Ne zaupaj lepim besedam.",
+    "answer": "Do not trust nice words."
+  },
+  {
+    "question": "V štedilniku gori ogenj.",
+    "answer": "There is fire in the stove."
+  },
+  {
+    "question": "Gostje prihajajo na večerjo.",
+    "answer": "There are guests coming to dinner."
+  },
+  {
+    "question": "Štorklje letijo po zraku.",
+    "answer": "There are storks flying in the air."
+  },
+  {
+    "question": "Po zabavi ni ostalo nič torte.",
+    "answer": "There is no cake left after the party."
+  },
+  {
+    "question": "Po zabavi ni ostalo nič sira.",
+    "answer": "There is no cheese left after the party."
+  },
+  {
+    "question": "Po zabavi ni ostalo nič soka.",
+    "answer": "There is no juice left after the party."
+  },
+  {
+    "question": "Po zabavi ni ostalo nič pomfrija.",
+    "answer": "There is no chips left after the party."
+  },
+  {
+    "question": "Po zabavi ni ostalo nič coca-cole.",
+    "answer": "There is no coca cola left after the party."
+  },
+  {
+    "question": "V dnevni sobi.",
+    "answer": "In the living room."
+  },
+  {
+    "question": "V kuhinji.",
+    "answer": "In the kitchen."
+  },
+  {
+    "question": "Zelenjava je dobra zame.",
+    "answer": "Vegetables are good for me."
+  },
+  {
+    "question": "Juho jemo z žlico.",
+    "answer": "We eat soup with a spoon."
+  },
+  {
+    "question": "Star sem deset let.",
+    "answer": "I am ten years old."
+  },
+  {
+    "question": "Zabava se začne ob šestih.",
+    "answer": "The party starts at six o'clock."
+  },
+  {
+    "question": "Mama nima rada banan v svojem sendviču.",
+    "answer": "Mum doesn't like bananas in her sandwich."
+  },
+  {
+    "question": "Da mu naredi sendvič.",
+    "answer": "To make him a sandwich."
+  },
+  {
+    "question": "Ja, ona ima.",
+    "answer": "Yes, she does."
+  },
+  {
+    "question": "Ne, ni.",
+    "answer": "No, it isn't."
+  },
+  {
+    "question": "Ja, je.",
+    "answer": "Yes, it is."
+  },
+  {
+    "question": "Vse najboljše za rojstni dan, Twig. — Hvala, Hookie.",
+    "answer": "Happy birthday, Twig. — Thank you, Hookie."
+  },
+  {
+    "question": "Fant želi kokakolo, nekaj pomfrija, banano … in njegova mama postane jezena.",
+    "answer": "The boy wants a coke, some chips, a banana… and his mum gets angry."
+  },
+  {
+    "question": "Za zajtrk Katie je kruh, maslo in marmelado.",
+    "answer": "For breakfast, Katie eats bread, butter and jam."
+  },
+  {
+    "question": "Nejc za zajtrk je sendvič.",
+    "answer": "Nejc eats a sandwich for breakfast."
+  },
+  {
+    "question": "Za kosilo ima Katie sendvič.",
+    "answer": "For lunch, Katie has a sandwich."
+  },
+  {
+    "question": "Nejc za kosilo je juho, meso, pomfri in zeleno solato.",
+    "answer": "Nejc eats soup, meat, chips and lettuce for lunch."
+  },
+  {
+    "question": "Za večerjo Katie je piščanca, paradižnike, pomfri in torto.",
+    "answer": "For dinner, Katie eats chicken, tomatoes, chips and cake."
+  },
+  {
+    "question": "Nejc ima za večerjo kruh in ocvrta jajca.",
+    "answer": "Nejc has bread and fried eggs for dinner."
+  },
+  {
+    "question": "Lucy obožuje palačinke.",
+    "answer": "Lucy loves pancakes."
+  },
+  {
+    "question": "Rada ima sok, za špagete pa ji je vseeno.",
+    "answer": "She likes juice, but she doesn't mind about spaghetti."
+  },
+  {
+    "question": "Mike in Mel sovražita juho.",
+    "answer": "Mike and Mel hate soup."
+  },
+  {
+    "question": "Cindy obožuje jagode, za piščanca pa ji je vseeno.",
+    "answer": "Cindy loves strawberries and she doesn't mind about chicken."
+  },
+  {
+    "question": "Billy obožuje pomfri.",
+    "answer": "Billy loves chips."
+  },
+  {
+    "question": "Ne mara mleka in sovraži zeleno solato.",
+    "answer": "He doesn't like milk and he hates lettuce."
+  },
+  {
+    "question": "Johnny ima kosilo ob osmih.",
+    "answer": "Johnny has lunch at eight."
+  },
+  {
+    "question": "Johnny pride v šolo ob 10. uri.",
+    "answer": "Johnny comes to school at 10 o'clock."
+  },
+  {
+    "question": "Johnny gre domov ob štirih.",
+    "answer": "Johnny goes home at four o'clock."
+  },
+  {
+    "question": "Johnny ima večerjo ob petih.",
+    "answer": "Johnny has dinner at five o'clock."
+  },
+  {
+    "question": "Johnny dela svojo domačo nalogo ob osmih.",
+    "answer": "Johnny does his homework at eight o'clock."
+  },
+  {
+    "question": "Kdaj imamo zelenjavno juho in palačinke?",
+    "answer": "When do we have vegetable soup and pancakes?"
+  },
+  {
+    "question": "Kdaj imamo bučno juho in sadno pito?",
+    "answer": "When do we have pumpkin soup and fruit pie?"
+  },
+  {
+    "question": "Kdaj jemo grahovo juho, purana, riž in zeleno solato?",
+    "answer": "When do we eat pea soup, turkey, rice and lettuce?"
+  },
+  {
+    "question": "Kdaj jemo mesne kroglice v paradižnikovi omaki in pire krompir?",
+    "answer": "When do we eat meatballs in tomato sauce and mashed potatoes?"
+  },
+  {
+    "question": "Kaj morske pošasti jedo za kosilo?",
+    "answer": "What do sea monsters eat for lunch?"
+  },
+  {
+    "question": "Kaj je oranžno in zveni kot papiga?",
+    "answer": "What's orange and sounds like a parrot?"
+  },
+  {
+    "question": "Kateri dan krompirji najbolj sovražijo?",
+    "answer": "What day do potatoes hate the most?"
+  },
+  {
+    "question": "Kaj je najbolje dati v pito? Svoje zobe!",
+    "answer": "What's the best thing to put into a pie? Your teeth!"
+  },
+  {
+    "question": "Če bi imel v eni roki 5 pomaranč in v drugi 5 hrušk, kaj bi imel? Ogromne roke.",
+    "answer": "If you had 5 oranges in one hand and 5 pears in the other hand, what would you have? Enormous hands."
+  },
+  {
+    "question": "Kaj je jabolko reklo hrošču? Nehaj me gnjaviti!",
+    "answer": "What did the apple say to the bug? Stop bugging me!"
+  },
+  {
+    "question": "Kaj je banana rekla opici? Nič. Banane ne znajo govoriti.",
+    "answer": "What did the banana say to the monkey? Nothing. Bananas can't talk."
+  },
+  {
+    "question": "Zakaj banane niso nikoli osamljene? Ker se družijo v grozdih.",
+    "answer": "Why are bananas never lonely? Because they hang around in bunches."
+  },
+  {
+    "question": "Kaj je rdeče in se premika gor in dol? Paradižnik v dvigalu.",
+    "answer": "What is red and goes up and down? A tomato in elevator."
+  },
+  {
+    "question": "\"Dobro jutro, gospodična vrana,\" reče lisica.",
+    "answer": "Good morning, Miss Crow, says the fox."
+  },
+  {
+    "question": "\"Kako dobro izgledaš danes, kako lepa so tvoja peresa, kako lepe so tvoje oči!\"",
+    "answer": "How good you look today, how beautiful your feathers are, how nice your eyes are!"
+  },
+  {
+    "question": "\"Gotovo imaš čudovit glas – mi lahko zapješ pesem?\"",
+    "answer": "You must have a beautiful voice – can you sing me a song?"
+  },
+  {
+    "question": "Vrana je zelo vesela takšnih lepih besed, zato odpre kljun.",
+    "answer": "The crow is very happy to hear such nice words so she opens her mouth."
+  },
+  {
+    "question": "Velik kos sira pade naravnost v lisičja usta.",
+    "answer": "The big piece of cheese falls right into the fox's mouth."
+  },
+  {
+    "question": "Kralj je suh in visok.",
+    "answer": "The king is thin and tall."
+  },
+  {
+    "question": "Kuhar je majhen in debel.",
+    "answer": "The cook is short and fat."
+  },
+  {
+    "question": "Ali imaš rad pico za zajtrk?",
+    "answer": "Do you like pizza for breakfast?"
+  },
+  {
+    "question": "Kaj daš v svojo najljubšo palačinko?",
+    "answer": "What do you put in your favourite pancake?"
+  },
+  {
+    "question": "Po zabavi je ostalo le še eno mleko.",
+    "answer": "There's only one milk left after the party."
+  },
+  {
+    "question": "Za moje kosilo in mojo večerjo je zelenjavni zrezek vedno zmagovalec.",
+    "answer": "For my lunch and for my dinner, a veggie steak is always winner."
+  },
+  {
+    "question": "Paradižnik, zelena solata, bučna pita so dobri za želodec in moje oči.",
+    "answer": "Tomato, lettuce, pumpkin pie, are good for stomach and my eye."
+  }
+]
