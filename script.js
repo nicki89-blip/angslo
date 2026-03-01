@@ -7,10 +7,10 @@ const SUBJECTS = [
 // 📗 Seznam naborov
 const DATASETS = [
   { id: "all",      subject: "anglescina", name: "Vse besede",  url: "english_words.json" },
-{ id: "combined", subject: "anglescina", name: "Vse enote",   url: null, combined: ["unit1.json","unit2.json","unit3.json","unit4.json"] },  { id: "unit1",    subject: "anglescina", name: "Unit 1",      url: "unit1.json" },
+  { id: "combined", subject: "anglescina", name: "Vse enote",   url: null, combined: ["unit1.json","unit2.json","unit3.json"] },
+  { id: "unit1",    subject: "anglescina", name: "Unit 1",      url: "unit1.json" },
   { id: "unit2",    subject: "anglescina", name: "Unit 2",      url: "unit2.json" },
   { id: "unit3",    subject: "anglescina", name: "Unit 3",      url: "unit3.json" },
-  { id: "unit4",    subject: "anglescina", name: "Unit 4",      url: "unit4.json" },
   { id: "dinarsko-obsredozemske", subject: "druzba", name: "Dinarskokraške in Obsredozemske pokrajine", url: "dinarsko-obsredozemske.json" },
 ];
 const SELECT_KEY  = "anki_dataset_id";
@@ -902,8 +902,10 @@ class TimedApp {
 
     // Check if target hit mid-question
     if (this.score >= this.level.target && this.timer) {
-      // Let timer naturally expire OR advance immediately after brief pause
-      // We just keep going and let the timer check handle it
+      clearInterval(this.timer); this.timer = null;
+     if (this._autoTimer) { clearTimeout(this._autoTimer); this._autoTimer = null; }
+     setTimeout(() => this.advanceLevel(), isCorrect ? 600 : 1800);
+     return;
     }
 
     this._autoTimer = setTimeout(() => this.nextQuestion(), isCorrect ? 500 : 1600);
