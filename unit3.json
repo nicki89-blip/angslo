@@ -734,5 +734,265 @@
   {
     "question": "Peti",
     "answer": "To sing"
+  },
+  {
+    "question": "Volna",
+    "answer": "Wool"
+  },
+  {
+    "question": "Jajca",
+    "answer": "Eggs"
+  },
+  {
+    "question": "Meso",
+    "answer": "Meat"
+  },
+  {
+    "question": "Mleko",
+    "answer": "Milk"
+  },
+  {
+    "question": "Hiša",
+    "answer": "House"
+  },
+  {
+    "question": "Družba",
+    "answer": "Company"
+  },
+  {
+    "question": "Krotek",
+    "answer": "Tame"
+  },
+  {
+    "question": "Delaven",
+    "answer": "Hard-working"
+  },
+  {
+    "question": "Smešen",
+    "answer": "Funny"
+  },
+  {
+    "question": "Prestrašen",
+    "answer": "Afraid"
+  },
+  {
+    "question": "Skočiti",
+    "answer": "To jump"
+  },
+  {
+    "question": "Moder",
+    "answer": "Blue"
+  },
+  {
+    "question": "Topel",
+    "answer": "Warm"
+  },
+  {
+    "question": "Živalski vrt",
+    "answer": "Zoo"
+  },
+  {
+    "question": "Vrt",
+    "answer": "Garden"
+  },
+  {
+    "question": "Akvarij",
+    "answer": "Aquarium"
+  },
+  {
+    "question": "Kmetija",
+    "answer": "Farm"
+  },
+  {
+    "question": "Orel",
+    "answer": "Eagle"
+  },
+  {
+    "question": "Lisica",
+    "answer": "Fox"
+  },
+  {
+    "question": "Rak",
+    "answer": "Crab"
+  },
+  {
+    "question": "Morska zvezda",
+    "answer": "Starfish"
+  },
+  {
+    "question": "Lemur",
+    "answer": "Lemur"
+  },
+  {
+    "question": "Opičje roke in prsti",
+    "answer": "Monkey's hands and fingers"
+  },
+  {
+    "question": "Zebrine črne in bele proge",
+    "answer": "Zebra's black and white stripes"
+  },
+  {
+    "question": "Kamelja grba",
+    "answer": "Camel's hump"
+  },
+  {
+    "question": "Ušesa povodnega konja",
+    "answer": "Hippo's ears"
+  },
+  {
+    "question": "Pingvinove plavalne kožice na nogah",
+    "answer": "Penguin's webbed feet"
+  },
+  {
+    "question": "Pandin črno-beli obraz",
+    "answer": "Panda's black and white face"
+  },
+  {
+    "question": "Nojev kljun",
+    "answer": "Ostrich's beak"
+  },
+  {
+    "question": "Levja griva",
+    "answer": "Lion's mane"
+  },
+  {
+    "question": "Tigrovo krzno",
+    "answer": "Tiger's fur"
+  },
+  {
+    "question": "Žirafja kopita",
+    "answer": "Giraffe's hoofs"
+  },
+  {
+    "question": "Medvedje tace",
+    "answer": "Bear's paws"
+  },
+  {
+    "question": "Kengurujev rep",
+    "answer": "Kangaroo's tail"
+  },
+  {
+    "question": "Želvin oklep",
+    "answer": "Turtle's shell"
+  },
+  {
+    "question": "Delfinova plavut",
+    "answer": "Dolphin's fin"
+  },
+  {
+    "question": "Tarantuline noge",
+    "answer": "Tarantula's legs"
+  },
+  {
+    "question": "Krava daje mleko.",
+    "answer": "A cow gives milk."
+  },
+  {
+    "question": "Miš je sir.",
+    "answer": "A mouse eats cheese."
+  },
+  {
+    "question": "Pes čuva hišo.",
+    "answer": "A dog guards the house."
+  },
+  {
+    "question": "Mačka ljudem dela družbo.",
+    "answer": "A cat keeps people company."
+  },
+  {
+    "question": "Puran je črve.",
+    "answer": "A turkey eats worms."
+  },
+  {
+    "question": "Krava je seno.",
+    "answer": "A cow eats hay."
+  },
+  {
+    "question": "Pelji jih na sprehod.",
+    "answer": "Take them for a walk."
+  },
+  {
+    "question": "Delaj jim družbo.",
+    "answer": "Keep them company."
+  },
+  {
+    "question": "Daj jim hrano in svežo vodo.",
+    "answer": "Give them food and fresh water."
+  },
+  {
+    "question": "Hrani jih redno.",
+    "answer": "Feed them regularly."
+  },
+  {
+    "question": "Očisti njihov akvarij / kletko / škatlo / mačje stranišče.",
+    "answer": "Clean their fishtank / cage / box / litterbox."
+  },
+  {
+    "question": "Lepo ravnaj z njimi.",
+    "answer": "Treat them nicely."
+  },
+  {
+    "question": "Mačka je čista, prašič pa je umazan.",
+    "answer": "A cat is clean, but a pig is dirty."
+  },
+  {
+    "question": "Lev je močan, piščanček pa je šibek.",
+    "answer": "A lion is strong, but a chick is weak."
+  },
+  {
+    "question": "Opica je smešna, podgana pa je dolgočasna.",
+    "answer": "A monkey is funny, but a rat is boring."
+  },
+  {
+    "question": "Mravlja je majhna in delavna.",
+    "answer": "An ant is small and hardworking."
+  },
+  {
+    "question": "Ovca je sramožljiva in prijazna.",
+    "answer": "A sheep is shy and friendly."
+  },
+  {
+    "question": "Opica je smešna in glasna.",
+    "answer": "A monkey is funny and loud."
+  },
+  {
+    "question": "Medved je bel in velik.",
+    "answer": "A bear is white and big."
+  },
+  {
+    "question": "Kaj je miš? Je sir.",
+    "answer": "What does a mouse eat? It eats cheese."
+  },
+  {
+    "question": "Kje lahko vidim kamelo? V živalskem vrtu.",
+    "answer": "Where can I see a camel? In a zoo."
+  },
+  {
+    "question": "Kakšen je lev? Velik in nevaren je.",
+    "answer": "What is a lion like? It's big and dangerous."
+  },
+  {
+    "question": "Ali lahko opica pleza po drevesih? Da, seveda. Zelo dobro zna plezati po drevesih.",
+    "answer": "Can a monkey climb trees? Yes, of course. It can climb trees very well."
+  },
+  {
+    "question": "Kako lahko poskrbiš za svojo mačko? Nahranim jo in ji očistim stranišče.",
+    "answer": "How can you take care of your cat? I feed it and I clean its litterbox."
+  },
+  {
+    "question": "Ali ima povodni konj trobec? Ne, nima ga. Slon ga ima.",
+    "answer": "Has a hippo got a trunk? No, it hasn't. An elephant has got one."
+  },
+  {
+    "question": "Ali lahko nahranim tigra? Ne, ne smeš. Preveč je nevarno.",
+    "answer": "Can I feed the tiger? No, you can't. It's too dangerous."
+  },
+  {
+    "question": "Kaj zna kit? Zna plavati.",
+    "answer": "What can a whale do? It can swim."
+  },
+  {
+    "question": "Mi lahko pomagaš, prosim? Da, seveda. Kaj je narobe?",
+    "answer": "Can you help me, please? Yes, of course. What's the matter?"
   }
 ]
