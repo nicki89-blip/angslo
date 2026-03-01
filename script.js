@@ -7,10 +7,11 @@ const SUBJECTS = [
 // 📗 Seznam naborov
 const DATASETS = [
   { id: "all",      subject: "anglescina", name: "Vse besede",  url: "english_words.json" },
-  { id: "combined", subject: "anglescina", name: "Vse enote",   url: null, combined: ["unit1.json","unit2.json","unit3.json"] },
+  { id: "combined", subject: "anglescina", name: "Vse enote",   url: null, combined: ["unit1.json","unit2.json","unit3.json","unit4.json"] },
   { id: "unit1",    subject: "anglescina", name: "Unit 1",      url: "unit1.json" },
   { id: "unit2",    subject: "anglescina", name: "Unit 2",      url: "unit2.json" },
   { id: "unit3",    subject: "anglescina", name: "Unit 3",      url: "unit3.json" },
+  { id: "unit4",    subject: "anglescina", name: "Unit 4",      url: "unit4.json" },
   { id: "dinarsko-obsredozemske", subject: "druzba", name: "Dinarskokraške in Obsredozemske pokrajine", url: "dinarsko-obsredozemske.json" },
 ];
 const SELECT_KEY  = "anki_dataset_id";
